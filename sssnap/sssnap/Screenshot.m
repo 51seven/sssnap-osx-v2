@@ -42,9 +42,20 @@
     [screencapture launch];
     [screencapture waitUntilExit];
     
-    NSLog(@"Process 'screencapture' has finished with reason: %ld", [screencapture terminationReason]);
+    //  Check if screencapture did success or aborted
+    //  Check if task ins't still running to prevent errors!
+    if(![screencapture isRunning]) {
+        int status = [screencapture terminationStatus];
+        if(status == 0){
+            //  Success, do something!
+            NSLog(@"Terminated like I should!");
+        } else {
+            //  Error, log trace!
+            NSLog(@"Aborted!");
+        }
+    }
     
-    return nil;
+    return nil; //  Change!!
 }
 
 @end
