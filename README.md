@@ -12,7 +12,6 @@ We will have two development circles:
 + **Improvement Circle**: Improve the implemented features too a statisfying lavel, then start over.
 
 ##Milestones
-====
 **1st Milestone (started 10/17/2014)**  
 (_also see [https://github.com/51seven/sssnap-osx-v2/milestones?state=open](https://github.com/51seven/sssnap-osx-v2/milestones?state=open)_)
 
