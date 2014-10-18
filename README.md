@@ -15,6 +15,7 @@ We will have two development circles:
 **1st Milestone (started 10/17/2014)**  
 (_also see [https://github.com/51seven/sssnap-osx-v2/milestones?state=open](https://github.com/51seven/sssnap-osx-v2/milestones?state=open)_)
 
-+ The user can take screenshots
-+ The user can Login via Google
-+ The user obtains a link he can share with the world
+- [ ] The user can take screenshots
+- [ ] The Application lives in the status bar only
+- [ ] The user can Login via Google
+- [ ] The user obtains a link he can share with the world
