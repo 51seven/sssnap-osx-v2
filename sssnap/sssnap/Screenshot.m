@@ -2,6 +2,12 @@
 //  Screenshot.m
 //  sssnap
 //
+//  Screenshot class. Every time the screenshot hotkey is triggered, a new Screenshot Object is created.
+//  For now a Screenshot Object has the following properties:
+//  @screenshotData: The actual screenshot to be sent to the server.
+//  @screenshotURL: The URL under which the screenshot is accessable on the server.
+//  To be continued!
+//
 //  Created by Christian Poplawski on 17/10/14.
 //  Copyright (c) 2014 51seven. All rights reserved.
 //
@@ -17,7 +23,8 @@
 -(id) init
 {
     if(self = [super init]) {
-        NSLog(@"Entered Screenshot constructor"); //Testing
+        //  A Screenshot Object only is created when the user wants to take a screenshot.
+        //  Therefor the screenshotData (speak: the screenshot) has to be taken right away.
         screenshotData = [self takeScreenshot];
     }
     
@@ -26,6 +33,7 @@
 
 //
 //  Captures a screenshot using the built in screencapture command.
+//  Returns the data to the screenshot Object.
 //
 -(NSData*) takeScreenshot {
     

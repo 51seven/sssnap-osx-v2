@@ -26,6 +26,8 @@
 
 - (IBAction)screenshotButtonPush:(id)sender {
     NSLog(@"Button was pushed!");
+    //  Create a new Screenshot Object
+    //  On inintiation a screenshot is taken
     Screenshot *testScreenshot = [[Screenshot alloc]init];
 }
 @end
