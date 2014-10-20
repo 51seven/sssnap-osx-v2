@@ -13,7 +13,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
+                <outlet property="statusMenu" destination="BGN-z0-4Zy" id="j8x-eu-FYH"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -666,27 +666,23 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="sssnap" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rXy-bG-n0b">
-                        <rect key="frame" x="169" y="163" width="142" height="32"/>
-                        <buttonCell key="cell" type="push" title="Take Screenshot" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4YZ-V2-9Yh">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="screenshotButtonPush:" target="Voe-Tx-rLC" id="Boa-Ff-eXR"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
-        </window>
+        <menu id="BGN-z0-4Zy">
+            <items>
+                <menuItem title="Take Screenshot" id="FEg-1f-bQ8">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="screenshotButtonPush:" target="Voe-Tx-rLC" id="iqh-B4-D8P"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="bzg-My-vfl"/>
+                <menuItem title="Quit" id="mfg-O1-Bo9">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitApp:" target="Voe-Tx-rLC" id="sE6-QK-Hs4"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="1194" y="441.5"/>
+        </menu>
     </objects>
 </document>

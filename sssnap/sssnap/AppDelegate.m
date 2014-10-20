@@ -16,8 +16,20 @@
 
 @implementation AppDelegate
 
+//  Synthesize the status bar item
+@synthesize statusBar = _statusBar;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    
+    
+    self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    self.statusBar.title = @"G";
+    //self.statusBar.image =    set image later
+    
+    //  Assign the Menu to the status bar item
+    self.statusBar.menu = self.statusMenu;
+    self.statusBar.highlightMode = YES;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -29,5 +41,8 @@
     //  Create a new Screenshot Object
     //  On inintiation a screenshot is taken
     Screenshot *testScreenshot = [[Screenshot alloc]init];
+}
+- (IBAction)quitApp:(id)sender {
+    [NSApp terminate:self];
 }
 @end

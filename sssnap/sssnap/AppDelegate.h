@@ -11,7 +11,11 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 - (IBAction)screenshotButtonPush:(id)sender;
+- (IBAction)quitApp:(id)sender;
 
+//  Status Bar
+@property (strong, nonatomic) NSStatusItem *statusBar;
+@property (weak) IBOutlet NSMenu *statusMenu;
 
 @end
 
