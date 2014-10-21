@@ -3,9 +3,12 @@
 //  sssnap
 //
 //  Screenshot class. Every time the screenshot hotkey is triggered, a new Screenshot Object is created.
-//  For now a Screenshot Object has the following properties:
+//  A Screenshot Object has the following properties:
 //  @screenshotData: The actual screenshot to be sent to the server.
-//  @screenshotURL: The URL under which the screenshot is accessable on the server.
+//  @didFinishProperly: Informs the sender if the screenshot process finished properly.
+//  @internalError: If the task did not finish properly, there are two possibilities:
+//      1. The user canceled the screenshot, no internal error, wait for the next task.
+//      2. An internal error accured, should better not be happening.
 //  To be continued!
 //
 //  Created by Christian Poplawski on 17/10/14.
@@ -20,12 +23,13 @@
 
 @implementation Screenshot
 
+
 -(id) init
 {
     if(self = [super init]) {
         //  A Screenshot Object only is created when the user wants to take a screenshot.
         //  Therefor the screenshotData (speak: the screenshot) has to be taken right away.
-        screenshotData = [self takeScreenshot];
+        screenshotImage = [self takeScreenshot];
     }
     
     return self;
@@ -35,7 +39,7 @@
 //  Captures a screenshot using the built in screencapture command.
 //  Returns the data to the screenshot Object.
 //
--(NSData*) takeScreenshot {
+-(NSImage*) takeScreenshot {
     
     //  Start the task and define launch path
     NSTask *screencapture;
@@ -56,14 +60,43 @@
         int status = [screencapture terminationStatus];
         if(status == 0){
             //  Success, do something!
-            NSLog(@"Terminated like I should!");
+            
+            //  Init a pasteboard and copy it's contents to an array
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            NSArray *classes = [[NSArray alloc] initWithObjects: [NSImage class], nil];
+            NSDictionary *options = [NSDictionary dictionary];
+            NSArray *copiedItems = [pasteboard readObjectsForClasses:classes options:options];
+            
+            //  Check if there are elements from the clipboard in the array
+            if ([copiedItems count]) {
+                //  There should only be one element which should be an Image
+                if([[copiedItems objectAtIndex:0] isKindOfClass:[NSImage class]]) {
+                    //  Retrieve the image and set it as the Screenshots data
+                    NSImage *image = [copiedItems objectAtIndex:0];
+                    _didFinishProperly = YES;
+                    return image;
+                } else {
+                    //  No Image in clipboard where one should be
+                    //  Eception?
+                    _didFinishProperly = NO;
+                    _internalError = YES;
+                }
+            } else {
+                //  No items in the clipboard
+                //  Exception?
+                _didFinishProperly = NO;
+                _internalError = YES;
+            }
         } else {
-            //  Error, log trace!
-            NSLog(@"Aborted!");
+            //  User did not finish taking the screenshot
+            //  Programm should not throw an exception or error message, just wait for the next Screenshot
+            _didFinishProperly = NO;
+            _internalError = NO;
         }
     }
     
-    return nil; //  Change!!
+    return nil;
 }
+
 
 @end

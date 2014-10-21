@@ -12,10 +12,13 @@
 
 @interface Screenshot : NSObject
 {
-    NSData *screenshotData;
-    NSURL *screenshotUrl;
+    NSImage *screenshotImage;
+
 }
 
--(NSData*) takeScreenshot;
+@property BOOL internalError;
+@property BOOL didFinishProperly;
+
+-(NSImage*) takeScreenshot;
 
 @end

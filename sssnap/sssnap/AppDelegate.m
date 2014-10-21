@@ -19,9 +19,9 @@
 //  Synthesize the status bar item
 @synthesize statusBar = _statusBar;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
     // Insert code here to initialize your application
-    
     
     self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     self.statusBar.title = @"G";
@@ -32,6 +32,8 @@
     self.statusBar.highlightMode = YES;
 }
 
+
+
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
@@ -41,6 +43,15 @@
     //  Create a new Screenshot Object
     //  On inintiation a screenshot is taken
     Screenshot *testScreenshot = [[Screenshot alloc]init];
+    if (testScreenshot.didFinishProperly) {
+        NSLog(@"Everything worked out well!");
+    } else {
+        if (testScreenshot.internalError) {
+            NSLog(@"Ooops, internal error!");
+        } else {
+            NSLog(@"User aborted!");
+        }
+    }
 }
 - (IBAction)quitApp:(id)sender {
     [NSApp terminate:self];
