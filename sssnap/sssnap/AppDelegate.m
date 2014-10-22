@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Screenshot.h"
+#import "Upload.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +31,7 @@
     //  Assign the Menu to the status bar item
     self.statusBar.menu = self.statusMenu;
     self.statusBar.highlightMode = YES;
+    
 }
 
 
@@ -45,14 +47,22 @@
     Screenshot *testScreenshot = [[Screenshot alloc]init];
     if (testScreenshot.didFinishProperly) {
         NSLog(@"Everything worked out well!");
+        //  TODO:
+        //  Upload Image, send Notification
+        Upload *uploadScreenshot = [[Upload alloc]initWithScreenshot:testScreenshot.screenshotImage];
     } else {
         if (testScreenshot.internalError) {
+            //  Everything is ruined, run!
             NSLog(@"Ooops, internal error!");
         } else {
+            //  Nothing hapened, wait for next Screenshot.
             NSLog(@"User aborted!");
+            return;
         }
     }
 }
+
+
 - (IBAction)quitApp:(id)sender {
     [NSApp terminate:self];
 }

@@ -29,7 +29,7 @@
     if(self = [super init]) {
         //  A Screenshot Object only is created when the user wants to take a screenshot.
         //  Therefor the screenshotData (speak: the screenshot) has to be taken right away.
-        screenshotImage = [self takeScreenshot];
+        _screenshotImage = [self takeScreenshot];
     }
     
     return self;
@@ -74,6 +74,7 @@
                     //  Retrieve the image and set it as the Screenshots data
                     NSImage *image = [copiedItems objectAtIndex:0];
                     _didFinishProperly = YES;
+                    NSLog(@"%@", [image description]);
                     return image;
                 } else {
                     //  No Image in clipboard where one should be

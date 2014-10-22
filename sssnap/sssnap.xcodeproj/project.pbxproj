@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D93779B619F68B5E0044BCF3 /* Upload.m in Sources */ = {isa = PBXBuildFile; fileRef = D93779B519F68B5E0044BCF3 /* Upload.m */; };
 		D96B5B1019F1A4D800291F46 /* Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = D96B5B0F19F1A4D800291F46 /* Screenshot.m */; };
 		D9FD49BE19F1A03E008DA510 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD49BD19F1A03E008DA510 /* main.m */; };
 		D9FD49C119F1A03E008DA510 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD49C019F1A03E008DA510 /* AppDelegate.m */; };
@@ -26,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D93779B419F68B5E0044BCF3 /* Upload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Upload.h; sourceTree = "<group>"; };
+		D93779B519F68B5E0044BCF3 /* Upload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Upload.m; sourceTree = "<group>"; };
 		D96B5B0E19F1A4D800291F46 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screenshot.h; sourceTree = "<group>"; };
 		D96B5B0F19F1A4D800291F46 /* Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screenshot.m; sourceTree = "<group>"; };
 		D9FD49B819F1A03E008DA510 /* sssnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sssnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +88,8 @@
 				D9FD49C419F1A03E008DA510 /* MainMenu.xib */,
 				D96B5B0E19F1A4D800291F46 /* Screenshot.h */,
 				D96B5B0F19F1A4D800291F46 /* Screenshot.m */,
+				D93779B419F68B5E0044BCF3 /* Upload.h */,
+				D93779B519F68B5E0044BCF3 /* Upload.m */,
 				D9FD49BB19F1A03E008DA510 /* Supporting Files */,
 			);
 			path = sssnap;
@@ -215,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D93779B619F68B5E0044BCF3 /* Upload.m in Sources */,
 				D96B5B1019F1A4D800291F46 /* Screenshot.m in Sources */,
 				D9FD49C119F1A03E008DA510 /* AppDelegate.m in Sources */,
 				D9FD49BE19F1A03E008DA510 /* main.m in Sources */,
