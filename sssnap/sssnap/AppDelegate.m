@@ -2,6 +2,8 @@
 //  AppDelegate.m
 //  sssnap
 //
+//  Version: 0.1
+//
 //  Created by Christian Poplawski on 17/10/14.
 //  Copyright (c) 2014 51seven. All rights reserved.
 //
@@ -48,8 +50,10 @@
     if (testScreenshot.didFinishProperly) {
         NSLog(@"Everything worked out well!");
         //  TODO:
-        //  Upload Image, send Notification
+        //  Upload Image, send Notification, send Link to Clipboard
         Upload *uploadScreenshot = [[Upload alloc]initWithScreenshot:testScreenshot.screenshotImage];
+        NSURL *screenshotURL = [uploadScreenshot screenshotURL];
+        NSLog(@"%@", screenshotURL);
     } else {
         if (testScreenshot.internalError) {
             //  Everything is ruined, run!
