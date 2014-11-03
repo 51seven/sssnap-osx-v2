@@ -7,11 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SettingsView.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 - (IBAction)screenshotButtonPush:(id)sender;
 - (IBAction)quitApp:(id)sender;
+- (IBAction)settingsButtonPush:(id)sender;
+
+//  Settings Window
+@property (strong) SettingsView *settingsWindow;
 
 //  Status Bar
 @property (strong, nonatomic) NSStatusItem *statusBar;

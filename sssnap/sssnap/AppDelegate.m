@@ -21,6 +21,7 @@
 
 //  Synthesize the status bar item
 @synthesize statusBar = _statusBar;
+@synthesize settingsWindow;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -69,5 +70,10 @@
 
 - (IBAction)quitApp:(id)sender {
     [NSApp terminate:self];
+}
+
+- (IBAction)settingsButtonPush:(id)sender {
+    settingsWindow = [[SettingsView alloc]init];
+    [settingsWindow showWindow:self];
 }
 @end
