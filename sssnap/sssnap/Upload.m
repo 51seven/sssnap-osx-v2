@@ -10,8 +10,8 @@
 //  @_serverURL: The URL to which the screenshot needs to be send. WIP.
 //  @_screenshotURL: The URL of the stored screenshot the server sent back. Not working at this time.
 //
-//  Documentation Status: Version 0.1
-//  Documentation last changed on: 22/10/14
+//  Documentation Status: Version 0.1.0
+//  Documentation last changed on: 17/11/14
 //
 //  Created by Christian Poplawski on 21/10/14.
 //  Copyright (c) 2014 51seven. All rights reserved.
@@ -75,7 +75,7 @@
     //  Append image data to post body
     if (screenshotData) {
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", BoundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"image.jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"image.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:screenshotData];
         [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -98,102 +98,71 @@
                  NSLog(@"%@", [uploadRequest description]); // DEBUG
                  
                  NSURLResponse *response = nil;
-                 NSError *err = nil;
-                 NSData *data = [NSURLConnection sendSynchronousRequest:uploadRequest returningResponse:&response error:&err];
+                 NSError *HTTPError = nil;
+                 NSData *data = [NSURLConnection sendSynchronousRequest:uploadRequest returningResponse:&response error:&HTTPError];
+                 
+                 // Log possible errors
+                 // TODO: Do something that makes sense when an error occurs.
+                 if(HTTPError) {
+                     NSLog(@"Following Error occured during the HTTP-Request: ");
+                     NSLog(@"%@", HTTPError);
+                 }
+                 
+                 // Write returns to string
                  NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
                  NSLog(@"%@", str); // DEBUG
-                 NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &err];
+                 
+                 NSError *JSONError = nil;
+                 NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &JSONError];
+                 
+                 // Log possible errors
+                 // TODO: Do something that makes sense when an error occurs.
+                 if(JSONError) {
+                     NSLog(@"Following Error occured during JSON-Parsing: ");
+                     NSLog(@"%@", JSONError);
+                 }
+                 
+                 // Save URL of screenshot to object's variables
                  _screenshotURL = [requestReturns valueForKey:@"shortlink"];
                  
                  NSLog(@"%@", requestReturns);  // DEBUG
                  NSLog(@"%@", _screenshotURL);  // DEBUG
                  
+                 [self copyURLToClipboard];
+                 
              }
          }];
     
-    
-    
-    
-    /*
-    if(err) {
-        NSLog(@"Error during Request");
-    }
-    
-    
-    
-    
-    
-    if(err) {
-        NSLog(@"Error during JSON parisng");
-        NSLog(@"%@", err);
-    }
-    
-    
-    NSLog(@"%@", requestReturns );  //  DEBUG
-    NSLog(@"%@", _screenshotURL);
-     */
-    
     return;
-    
 }
 
--(GTMOAuth2Authentication *) getAuth {
+-(void) copyURLToClipboard {
+    //  Get the general pasteboard
+    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+    //  Clear the contents of the clipboard
+    //  TODO: Integer needed?
+    NSInteger *changeCount = [pasteboard clearContents];
+    NSArray *urlToCopy = [NSArray arrayWithObject:_screenshotURL];
+    BOOL successfullyCopied = [pasteboard writeObjects:urlToCopy];
     
-    NSLog(@"Started to get auth");
-    GTMOAuth2Authentication *auth;
-    GoogleOAuth *appCredentials = [[GoogleOAuth alloc]init];
-    auth = [appCredentials getAuthFromKeychain];
-    
-    NSLog(@"Finisehd to get auth: %@", auth);
-    return auth;
-}
-
-- (void)authentication:(GTMOAuth2Authentication *)auth
-               request:(NSMutableURLRequest *)request
-     finishedWithError:(NSError *)error {
-    if (error != nil) {
-        // Authorization failed
-        NSLog(@"Authentication failed.");
+    if(successfullyCopied) {
+        NSLog(@"Sucesfully Copied");
+        NSError *notificationTestError = nil;
+        [self triggerNotification:notificationTestError];
     } else {
-        
-        NSLog(@"Authentication succeeded.");
-        [self sendrequest:request];
-
-    }
-}
-
-
--(void) sendrequest: (NSMutableURLRequest *) request {
-    
-    NSLog(@"%@", [request description]); // DEBUG
-    NSURLResponse *response = nil;
-    NSError *err = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-    
-    if(err) {
-        NSLog(@"Error during Request");
-    }
-    
-    NSLog(@"%@", str);
-    
-    NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &err];
-    _screenshotURL = [requestReturns valueForKey:@"shortlink"];
-    
-    if(err) {
-        NSLog(@"Error during JSON parisng");
-        NSLog(@"%@", err);
+        NSError *notificationTestError = [NSError errorWithDomain:@"Link not copied to clipboard properly" code:100 userInfo:nil];
+        [self triggerNotification:notificationTestError];
     }
     
     
-    NSLog(@"%@", requestReturns );  //  DEBUG
-    NSLog(@"%@", _screenshotURL);
 }
 
--(NSString*) returnScreenshotURL {
-    [self uploadScreenshot];
-    NSError *err;
-    return [NSString stringWithContentsOfURL:_screenshotURL encoding:NSUTF8StringEncoding error:&err];
+-(void) triggerNotification:(NSError *)error {
+    NSLog(@"Sending Notification");
+    UserNotification *testNotification = [[UserNotification alloc]initWithURL:_screenshotURL andError:error];
+    [testNotification sendNotification];
+
 }
+
 
 @end
