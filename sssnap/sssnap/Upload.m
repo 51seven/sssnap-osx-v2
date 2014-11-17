@@ -135,16 +135,5 @@
     
 }
 
--(GTMOAuth2Authentication *) getAuth {
-    
-    NSLog(@"Started to get auth");
-    GTMOAuth2Authentication *auth;
-    GoogleOAuth *appCredentials = [[GoogleOAuth alloc]init];
-    auth = [appCredentials getAuthFromKeychain];
-    
-    NSLog(@"Finisehd to get auth: %@", auth);
-    return auth;
-}
-
 
 @end
