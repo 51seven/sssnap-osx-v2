@@ -10,8 +10,8 @@
 //  @_serverURL: The URL to which the screenshot needs to be send. WIP.
 //  @_screenshotURL: The URL of the stored screenshot the server sent back. Not working at this time.
 //
-//  Documentation Status: Version 0.1
-//  Documentation last changed on: 22/10/14
+//  Documentation Status: Version 0.1.0
+//  Documentation last changed on: 17/11/14
 //
 //  Created by Christian Poplawski on 21/10/14.
 //  Copyright (c) 2014 51seven. All rights reserved.
@@ -98,11 +98,31 @@
                  NSLog(@"%@", [uploadRequest description]); // DEBUG
                  
                  NSURLResponse *response = nil;
-                 NSError *err = nil;
-                 NSData *data = [NSURLConnection sendSynchronousRequest:uploadRequest returningResponse:&response error:&err];
+                 NSError *HTTPError = nil;
+                 NSData *data = [NSURLConnection sendSynchronousRequest:uploadRequest returningResponse:&response error:&HTTPError];
+                 
+                 // Log possible errors
+                 // TODO: Do something that makes sense when an error occurs.
+                 if(HTTPError) {
+                     NSLog(@"Following Error occured during the HTTP-Request: ");
+                     NSLog(@"%@", HTTPError);
+                 }
+                 
+                 // Write returns to string
                  NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
                  NSLog(@"%@", str); // DEBUG
-                 NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &err];
+                 
+                 NSError *JSONError = nil;
+                 NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &JSONError];
+                 
+                 // Log possible errors
+                 // TODO: Do something that makes sense when an error occurs.
+                 if(JSONError) {
+                     NSLog(@"Following Error occured during JSON-Parsing: ");
+                     NSLog(@"%@", JSONError);
+                 }
+                 
+                 // Save URL of screenshot to object's variables
                  _screenshotURL = [requestReturns valueForKey:@"shortlink"];
                  
                  NSLog(@"%@", requestReturns);  // DEBUG
@@ -110,28 +130,6 @@
                  
              }
          }];
-    
-    
-    
-    
-    /*
-    if(err) {
-        NSLog(@"Error during Request");
-    }
-    
-    
-    
-    
-    
-    if(err) {
-        NSLog(@"Error during JSON parisng");
-        NSLog(@"%@", err);
-    }
-    
-    
-    NSLog(@"%@", requestReturns );  //  DEBUG
-    NSLog(@"%@", _screenshotURL);
-     */
     
     return;
     
@@ -148,52 +146,5 @@
     return auth;
 }
 
-- (void)authentication:(GTMOAuth2Authentication *)auth
-               request:(NSMutableURLRequest *)request
-     finishedWithError:(NSError *)error {
-    if (error != nil) {
-        // Authorization failed
-        NSLog(@"Authentication failed.");
-    } else {
-        
-        NSLog(@"Authentication succeeded.");
-        [self sendrequest:request];
-
-    }
-}
-
-
--(void) sendrequest: (NSMutableURLRequest *) request {
-    
-    NSLog(@"%@", [request description]); // DEBUG
-    NSURLResponse *response = nil;
-    NSError *err = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-    
-    if(err) {
-        NSLog(@"Error during Request");
-    }
-    
-    NSLog(@"%@", str);
-    
-    NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &err];
-    _screenshotURL = [requestReturns valueForKey:@"shortlink"];
-    
-    if(err) {
-        NSLog(@"Error during JSON parisng");
-        NSLog(@"%@", err);
-    }
-    
-    
-    NSLog(@"%@", requestReturns );  //  DEBUG
-    NSLog(@"%@", _screenshotURL);
-}
-
--(NSString*) returnScreenshotURL {
-    [self uploadScreenshot];
-    NSError *err;
-    return [NSString stringWithContentsOfURL:_screenshotURL encoding:NSUTF8StringEncoding error:&err];
-}
 
 @end
