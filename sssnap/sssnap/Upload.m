@@ -128,6 +128,9 @@
                  NSLog(@"%@", requestReturns);  // DEBUG
                  NSLog(@"%@", _screenshotURL);  // DEBUG
                  
+                 NSError *notificationTestError = nil;
+                 UserNotification *testNotification = [[UserNotification alloc]initWithURL:_screenshotURL andError:notificationTestError];
+                 
              }
          }];
     

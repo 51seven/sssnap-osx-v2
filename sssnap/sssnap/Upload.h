@@ -10,6 +10,7 @@
 #import "ServerAuth.h"
 #import "GTMOAuth2Authentication.h"
 #import "GoogleOAuth.h"
+#import "UserNotification.h"
 
 @interface Upload : NSObject
 
