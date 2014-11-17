@@ -75,7 +75,7 @@
     //  Append image data to post body
     if (screenshotData) {
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", BoundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"image.jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"image.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:screenshotData];
         [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -128,14 +128,40 @@
                  NSLog(@"%@", requestReturns);  // DEBUG
                  NSLog(@"%@", _screenshotURL);  // DEBUG
                  
-                 NSError *notificationTestError = nil;
-                 UserNotification *testNotification = [[UserNotification alloc]initWithURL:_screenshotURL andError:notificationTestError];
+                 [self copyURLToClipboard];
                  
              }
          }];
     
     return;
+}
+
+-(void) copyURLToClipboard {
+    //  Get the general pasteboard
+    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+    //  Clear the contents of the clipboard
+    //  TODO: Integer needed?
+    NSInteger *changeCount = [pasteboard clearContents];
+    NSArray *urlToCopy = [NSArray arrayWithObject:_screenshotURL];
+    BOOL successfullyCopied = [pasteboard writeObjects:urlToCopy];
     
+    if(successfullyCopied) {
+        NSLog(@"Sucesfully Copied");
+        NSError *notificationTestError = nil;
+        [self triggerNotification:notificationTestError];
+    } else {
+        NSError *notificationTestError = [NSError errorWithDomain:@"Link not copied to clipboard properly" code:100 userInfo:nil];
+        [self triggerNotification:notificationTestError];
+    }
+    
+    
+}
+
+-(void) triggerNotification:(NSError *)error {
+    NSLog(@"Sending Notification");
+    UserNotification *testNotification = [[UserNotification alloc]initWithURL:_screenshotURL andError:error];
+    [testNotification sendNotification];
+
 }
 
 

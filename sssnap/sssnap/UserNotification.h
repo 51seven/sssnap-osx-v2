@@ -17,6 +17,7 @@
 
 -(id) initWithURL: (NSURL *) screenshotURL andError: (NSError *) error;
 
+-(void) sendNotification;
 -(void) sendSuccessfulNotification;
 -(void) sendErrorNotification: (NSError *) error;
 

@@ -24,5 +24,7 @@
 
 -(id) initWithScreenshot:(NSImage*) screenshot andAuth: (GTMOAuth2Authentication *) auth;
 -(void) uploadScreenshot;
+-(void) copyURLToClipboard;
+-(void) triggerNotification: (NSError *) error;
 
 @end

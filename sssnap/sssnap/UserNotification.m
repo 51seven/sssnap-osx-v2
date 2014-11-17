@@ -16,21 +16,23 @@
         _uploadError = error;
     }
     
+    return self;
+}
+
+-(void) sendNotification {
     if(_uploadError != nil) {
         [self sendErrorNotification:_uploadError];
     } else {
         [self sendSuccessfulNotification];
     }
-    
-    return self;
 }
 
 -(void) sendSuccessfulNotification {
     
     //  Test Notification
     NSUserNotification *sucessNotification = [[NSUserNotification alloc] init];
-    sucessNotification.title = @"Hello, World!";
-    sucessNotification.informativeText = @"A notification";
+    sucessNotification.title = @"Upload Successful!";
+    sucessNotification.informativeText = @"A Link has ben copied to your Clipboard. Alternatively click this Notification";
     sucessNotification.soundName = NSUserNotificationDefaultSoundName;
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:sucessNotification];
