@@ -1,6 +1,11 @@
 sssnap-osx-v2
 =============
+##Contents
+1. [General](#general)
+2. [Release History](#release-history)
+3. [Milestones](#milestones)
 
+##<a name"general">General</a>
 This is a 2nd, simplified version of the OSX sssnap Client.  
 In general, sssnap is a tool to take screenshots and share them with the world easily.  
 
@@ -11,11 +16,21 @@ We will have two development circles:
 + **Feature Development**: Implement some (key) features in the product and make them work.  
 + **Improvement Circle**: Improve the implemented features too a statisfying lavel, then start over.
 
-##Milestones
-**1st Milestone (started 10/17/2014)**  
-(_also see [https://github.com/51seven/sssnap-osx-v2/milestones?state=open](https://github.com/51seven/sssnap-osx-v2/milestones?state=open)_)
+##<a name"release-history">Release History</a>
+###Version 0.2
+_Release-Date: 17.11.2014_  
+* You can take Screenshots via the App Menu  
+	* You recive a Notification, when the Upload of your Screenshot to the Server has finished  
+	* The Link to the Screenshot is copied to your clipboard  
+* You can Log In via Google, no need to register on yet another web service
+
+##<a name="milestones">Milestones</a>
+### ✓ Milestone 1
+**Finished 17/11/14**  
+~~1st Milestone (started 10/17/2014)~~ 
+
 
 - [x] The user can take screenshots
 - [x] The Application lives in the status bar only
-- [ ] The user can Login via Google
-- [ ] The user obtains a link he can share with the world
+- [x] The user can Login via Google
+- [x] The user obtains a link he can share with the world
