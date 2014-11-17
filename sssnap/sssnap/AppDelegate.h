@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import "SettingsView.h"
+#import "Screenshot.h"
+#import "Upload.h"
+#import "GoogleOAuth.h"
+#import "GTMOAuth2Authentication.h"
+#import "ServerAuth.h"
+
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -15,12 +21,17 @@
 - (IBAction)quitApp:(id)sender;
 - (IBAction)settingsButtonPush:(id)sender;
 
+- (BOOL) userIsSignedIn;
+
 //  Settings Window
 @property (strong) SettingsView *settingsWindow;
 
 //  Status Bar
 @property (strong, nonatomic) NSStatusItem *statusBar;
 @property (weak) IBOutlet NSMenu *statusMenu;
+
+//  Auth object to Authenticate with Google
+@property (strong) GTMOAuth2Authentication *auth;
 
 @end
 

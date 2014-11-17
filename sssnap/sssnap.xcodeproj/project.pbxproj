@@ -18,6 +18,7 @@
 		D938F2D41A07BB9D00256CA1 /* GTMOAuth2Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = D938F2CD1A07BB9D00256CA1 /* GTMOAuth2Window.xib */; };
 		D938F2D51A07BB9D00256CA1 /* GTMOAuth2WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2CF1A07BB9D00256CA1 /* GTMOAuth2WindowController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D938F2E31A07C01500256CA1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D938F2E21A07C01500256CA1 /* WebKit.framework */; };
+		D938F2E61A09138D00256CA1 /* ServerAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2E51A09138D00256CA1 /* ServerAuth.m */; };
 		D96B5B1019F1A4D800291F46 /* Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = D96B5B0F19F1A4D800291F46 /* Screenshot.m */; };
 		D9FD49BE19F1A03E008DA510 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD49BD19F1A03E008DA510 /* main.m */; };
 		D9FD49C119F1A03E008DA510 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD49C019F1A03E008DA510 /* AppDelegate.m */; };
@@ -56,6 +57,8 @@
 		D938F2CE1A07BB9D00256CA1 /* GTMOAuth2WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2WindowController.h; sourceTree = "<group>"; };
 		D938F2CF1A07BB9D00256CA1 /* GTMOAuth2WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2WindowController.m; sourceTree = "<group>"; };
 		D938F2E21A07C01500256CA1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		D938F2E41A09138D00256CA1 /* ServerAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAuth.h; sourceTree = "<group>"; };
+		D938F2E51A09138D00256CA1 /* ServerAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAuth.m; sourceTree = "<group>"; };
 		D96B5B0E19F1A4D800291F46 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screenshot.h; sourceTree = "<group>"; };
 		D96B5B0F19F1A4D800291F46 /* Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screenshot.m; sourceTree = "<group>"; };
 		D9FD49B819F1A03E008DA510 /* sssnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sssnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +147,17 @@
 			path = "gtm-oauth2";
 			sourceTree = "<group>";
 		};
+		D938F2E71A09139600256CA1 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D938F2C01A07BB1300256CA1 /* GoogleOAuth.h */,
+				D938F2C11A07BB1300256CA1 /* GoogleOAuth.m */,
+				D938F2E41A09138D00256CA1 /* ServerAuth.h */,
+				D938F2E51A09138D00256CA1 /* ServerAuth.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
 		D9FD49AF19F1A03E008DA510 = {
 			isa = PBXGroup;
 			children = (
@@ -172,8 +186,7 @@
 				D96B5B0F19F1A4D800291F46 /* Screenshot.m */,
 				D93779B419F68B5E0044BCF3 /* Upload.h */,
 				D93779B519F68B5E0044BCF3 /* Upload.m */,
-				D938F2C01A07BB1300256CA1 /* GoogleOAuth.h */,
-				D938F2C11A07BB1300256CA1 /* GoogleOAuth.m */,
+				D938F2E71A09139600256CA1 /* Authentication */,
 				D938F2C31A07BB9D00256CA1 /* Additions */,
 				D9FD49BB19F1A03E008DA510 /* Supporting Files */,
 			);
@@ -311,6 +324,7 @@
 				D938F2D01A07BB9D00256CA1 /* GTMHTTPFetcher.m in Sources */,
 				D93779B619F68B5E0044BCF3 /* Upload.m in Sources */,
 				D938F2D21A07BB9D00256CA1 /* GTMOAuth2Authentication.m in Sources */,
+				D938F2E61A09138D00256CA1 /* ServerAuth.m in Sources */,
 				D96B5B1019F1A4D800291F46 /* Screenshot.m in Sources */,
 				D938F2D11A07BB9D00256CA1 /* GTMHTTPFetchHistory.m in Sources */,
 				D9FD49C119F1A03E008DA510 /* AppDelegate.m in Sources */,

@@ -20,15 +20,21 @@
 #import "Upload.h"
 #import <AppKit/AppKit.h>
 
+
+
+
+#import "AppDelegate.h"
+
 @implementation Upload
 
 
--(id) initWithScreenshot: (NSImage*) screenshot {
+-(id) initWithScreenshot: (NSImage*) screenshot andAuth: (GTMOAuth2Authentication *) auth {
     if(self = [super init]) {
         _screenshotImage = screenshot;
         //  TODO: Write a function to easily switch between dev and live enviroment
-        _serverURL = [NSURL URLWithString:@"http://localhost:3000/upload"];
-        _screenshotURL = [self uploadScreenshot];
+        _serverURL = [NSURL URLWithString:@"https://localhost:3000/api/upload"];
+        _auth = auth;
+        
     }
     return self;
 }
@@ -39,7 +45,7 @@
 //  This function is called on Object initiation only!
 //  For further reading on the boundarys, please visit http://www.w3.org/Protocols/rfc1341/7_2_Multipart.html
 //
-- (NSURL *)uploadScreenshot {
+- (void) uploadScreenshot {
     
     //  Set up the basic request
     NSMutableURLRequest *uploadRequest = [[NSMutableURLRequest alloc] init];
@@ -53,6 +59,9 @@
     NSString *BoundaryConstant = @"V2ymHFg03ehbqgZCaKO6jy";
     // set Content-Type in HTTP header
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", BoundaryConstant];
+    NSString *accept = [NSString stringWithFormat:@"application/json"];
+    
+    [uploadRequest setValue:accept forHTTPHeaderField:@"Accept"];
     [uploadRequest setValue:contentType forHTTPHeaderField: @"Content-Type"];
     
     // Initialize post body
@@ -81,19 +90,110 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
     [uploadRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
     
-    //  Send the request and catch the response
+    [_auth authorizeRequest:uploadRequest
+         completionHandler:^(NSError *error) {
+             if (error == nil) {
+                 
+                 NSLog(@"Auth succeeded!"); // DEBUG
+                 NSLog(@"%@", [uploadRequest description]); // DEBUG
+                 
+                 NSURLResponse *response = nil;
+                 NSError *err = nil;
+                 NSData *data = [NSURLConnection sendSynchronousRequest:uploadRequest returningResponse:&response error:&err];
+                 NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+                 NSLog(@"%@", str); // DEBUG
+                 NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &err];
+                 _screenshotURL = [requestReturns valueForKey:@"shortlink"];
+                 
+                 NSLog(@"%@", requestReturns);  // DEBUG
+                 NSLog(@"%@", _screenshotURL);  // DEBUG
+                 
+             }
+         }];
+    
+    
+    
+    
+    /*
+    if(err) {
+        NSLog(@"Error during Request");
+    }
+    
+    
+    
+    
+    
+    if(err) {
+        NSLog(@"Error during JSON parisng");
+        NSLog(@"%@", err);
+    }
+    
+    
+    NSLog(@"%@", requestReturns );  //  DEBUG
+    NSLog(@"%@", _screenshotURL);
+     */
+    
+    return;
+    
+}
+
+-(GTMOAuth2Authentication *) getAuth {
+    
+    NSLog(@"Started to get auth");
+    GTMOAuth2Authentication *auth;
+    GoogleOAuth *appCredentials = [[GoogleOAuth alloc]init];
+    auth = [appCredentials getAuthFromKeychain];
+    
+    NSLog(@"Finisehd to get auth: %@", auth);
+    return auth;
+}
+
+- (void)authentication:(GTMOAuth2Authentication *)auth
+               request:(NSMutableURLRequest *)request
+     finishedWithError:(NSError *)error {
+    if (error != nil) {
+        // Authorization failed
+        NSLog(@"Authentication failed.");
+    } else {
+        
+        NSLog(@"Authentication succeeded.");
+        [self sendrequest:request];
+
+    }
+}
+
+
+-(void) sendrequest: (NSMutableURLRequest *) request {
+    
+    NSLog(@"%@", [request description]); // DEBUG
     NSURLResponse *response = nil;
     NSError *err = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:uploadRequest returningResponse:&response error:&err];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
     NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-    //NSLog(@"Response : %@",str);
     
-    //  ~~~~~~~~~~~~~~~~~~~~~~
-    //  THIS PART IS FOR TESTING REASONS AND NEEDS TO BE FIXED
-    //  ~~~~~~~~~~~~~~~~~~~~~~~
-    NSURL *exampleURL = [[NSURL alloc]initWithString:@"http://example.de"];
-    //  Shuld return an URL later on
-    return exampleURL;
+    if(err) {
+        NSLog(@"Error during Request");
+    }
+    
+    NSLog(@"%@", str);
+    
+    NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &err];
+    _screenshotURL = [requestReturns valueForKey:@"shortlink"];
+    
+    if(err) {
+        NSLog(@"Error during JSON parisng");
+        NSLog(@"%@", err);
+    }
+    
+    
+    NSLog(@"%@", requestReturns );  //  DEBUG
+    NSLog(@"%@", _screenshotURL);
+}
+
+-(NSString*) returnScreenshotURL {
+    [self uploadScreenshot];
+    NSError *err;
+    return [NSString stringWithContentsOfURL:_screenshotURL encoding:NSUTF8StringEncoding error:&err];
 }
 
 @end

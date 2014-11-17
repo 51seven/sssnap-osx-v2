@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "GTMOAuth2WindowController.h"
+#import "GTMOAuth2Authentication.h"
 
 @interface GoogleOAuth : NSWindowController{
     NSString *scope;
@@ -17,6 +18,8 @@
 }
 
 - (void)displaySignInSheet: (NSWindow *)targetWindow;
+- (GTMOAuth2Authentication *) getAuthFromKeychain;
+- (BOOL) credentialsInKeychain;
 
 
 @end

@@ -9,8 +9,6 @@
 //
 
 #import "AppDelegate.h"
-#import "Screenshot.h"
-#import "Upload.h"
 
 @interface AppDelegate ()
 
@@ -19,9 +17,8 @@
 
 @implementation AppDelegate
 
-//  Synthesize the status bar item
-@synthesize statusBar = _statusBar;
-@synthesize settingsWindow;
+@synthesize auth;
+
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -35,7 +32,13 @@
     self.statusBar.menu = self.statusMenu;
     self.statusBar.highlightMode = YES;
     
+    
+    
+    [self setGoogleOAuth];
+    NSLog(@"%@", auth);
+    
 }
+
 
 
 
@@ -48,15 +51,18 @@
     //  Create a new Screenshot Object
     //  On inintiation a screenshot is taken
     Screenshot *testScreenshot = [[Screenshot alloc]init];
-    if (testScreenshot.didFinishProperly) {
+    if ([testScreenshot didFinishProperly]) {
         NSLog(@"Everything worked out well!");
         //  TODO:
         //  Upload Image, send Notification, send Link to Clipboard
-        Upload *uploadScreenshot = [[Upload alloc]initWithScreenshot:testScreenshot.screenshotImage];
-        NSURL *screenshotURL = [uploadScreenshot screenshotURL];
-        NSLog(@"%@", screenshotURL);
+        
+        //NSOperationQueue Test
+        Upload *uploadScreenshot = [[Upload alloc]initWithScreenshot:[testScreenshot screenshotImage] andAuth: auth];
+        [uploadScreenshot uploadScreenshot];
+        
+        
     } else {
-        if (testScreenshot.internalError) {
+        if ([testScreenshot internalError]) {
             //  Everything is ruined, run!
             NSLog(@"Ooops, internal error!");
         } else {
@@ -73,7 +79,40 @@
 }
 
 - (IBAction)settingsButtonPush:(id)sender {
-    settingsWindow = [[SettingsView alloc]init];
-    [settingsWindow showWindow:self];
+    _settingsWindow = [[SettingsView alloc]init];
+    [_settingsWindow showWindow:self];
+}
+
+//
+//  Obtains the Google OAtuh GTMOAuth2Authentication-Object from the Keychain.
+//  If it can be used to authorize requests, it is saved to the AppDelegate's _auth property
+//  The _auth property should be given to all functions, that need to authorize something
+//  to keep the times the auth credentials are obtained from the keychain as low as possible.
+//
+//  TODO: What if the auth from keychain cannot authorize?
+//  TODO: What if there is no auth object stored in the keychain?
+//
+-(void) setGoogleOAuth {
+    GoogleOAuth *keychainCredentials = [[GoogleOAuth alloc]init];
+    GTMOAuth2Authentication *authFromKeychain = [keychainCredentials getAuthFromKeychain];
+    
+    if([authFromKeychain canAuthorize]) {
+        auth = authFromKeychain;
+    } else {
+        //  Auth not valid, User needs to Sign in
+        NSLog(@"Cannot auth. (Origin: Appdelegate.m)");
+    }
+    
+}
+
+-(BOOL) userIsSignedIn {
+    GoogleOAuth *gtmOperator = [[GoogleOAuth alloc]init];
+    if([gtmOperator credentialsInKeychain]) {
+        return YES;
+    } else {
+        return NO;
+    }
+
+    
 }
 @end
