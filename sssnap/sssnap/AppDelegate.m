@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  sssnap
 //
-//  Version: 0.1
+//  Version: 0.2
 //
 //  Created by Christian Poplawski on 17/10/14.
 //  Copyright (c) 2014 51seven. All rights reserved.
@@ -74,10 +74,17 @@
 }
 
 
+//
+//  Quit the App
+//
 - (IBAction)quitApp:(id)sender {
     [NSApp terminate:self];
 }
 
+
+//
+//  Open the Window Controller for the Settings Window
+//
 - (IBAction)settingsButtonPush:(id)sender {
     _settingsWindow = [[SettingsView alloc]init];
     [_settingsWindow showWindow:self];
@@ -105,6 +112,11 @@
     
 }
 
+
+//
+//  Checks if the Users is still signed in.
+//  Still neede?
+//
 -(BOOL) userIsSignedIn {
     GoogleOAuth *gtmOperator = [[GoogleOAuth alloc]init];
     if([gtmOperator credentialsInKeychain]) {

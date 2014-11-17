@@ -4,13 +4,14 @@
 //
 //  The Upload class initializes the upload of a screenshot taken by the Screenshot Class.
 //  The default init for this class is locked, since an Upload Object *always* needs to be initialized with
-//  an existing screenshot to be uploaded.
+//  an existing screenshot to be uploaded and an auth object.
 //  An Upload Object for now has the following properties:
 //  @_screenshotImage: The actual screenshot, which is given to the constroctor on initialization.
 //  @_serverURL: The URL to which the screenshot needs to be send. WIP.
 //  @_screenshotURL: The URL of the stored screenshot the server sent back. Not working at this time.
+//  @_auth: The auth object sent from the Object's init caller
 //
-//  Documentation Status: Version 0.1.0
+//  Documentation Status: Version 0.2
 //  Documentation last changed on: 17/11/14
 //
 //  Created by Christian Poplawski on 21/10/14.
@@ -90,14 +91,19 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
     [uploadRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
     
+    
+    //  Google OAuth Access Token is added to the request
+    //  by this function.
     [_auth authorizeRequest:uploadRequest
          completionHandler:^(NSError *error) {
              if (error == nil) {
-                 
+                 // Everything worked well.
                  NSLog(@"Auth succeeded!"); // DEBUG
                  NSLog(@"%@", [uploadRequest description]); // DEBUG
                  
+                 
                  NSURLResponse *response = nil;
+                 //NSError *HTTPError = [NSError errorWithDomain:@"ARGH" code:200 userInfo:nil];
                  NSError *HTTPError = nil;
                  NSData *data = [NSURLConnection sendSynchronousRequest:uploadRequest returningResponse:&response error:&HTTPError];
                  
@@ -128,6 +134,7 @@
                  NSLog(@"%@", requestReturns);  // DEBUG
                  NSLog(@"%@", _screenshotURL);  // DEBUG
                  
+                 // copy the URL to Clipboard
                  [self copyURLToClipboard];
                  
              }
@@ -136,20 +143,29 @@
     return;
 }
 
+
+//
+//  Writes the URL of the Screenshot to the User's clipboard.
+//  Because it works with the instance variable @_screenshotURL,
+//  there is no need to give any variables to this function.
+//
 -(void) copyURLToClipboard {
     //  Get the general pasteboard
     NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
     //  Clear the contents of the clipboard
-    //  TODO: Integer needed?
-    NSInteger *changeCount = [pasteboard clearContents];
+    [pasteboard clearContents];
     NSArray *urlToCopy = [NSArray arrayWithObject:_screenshotURL];
     BOOL successfullyCopied = [pasteboard writeObjects:urlToCopy];
     
     if(successfullyCopied) {
-        NSLog(@"Sucesfully Copied");
+        NSLog(@"Sucesfully Copied"); // DEBUG
+        //  Successfully copied, no error to send
         NSError *notificationTestError = nil;
         [self triggerNotification:notificationTestError];
     } else {
+        //  Error during copying, send error
+        //  Note: The _screenshotURL could still be right, this solely gives
+        //  Information about the copy-task.
         NSError *notificationTestError = [NSError errorWithDomain:@"Link not copied to clipboard properly" code:100 userInfo:nil];
         [self triggerNotification:notificationTestError];
     }
@@ -157,8 +173,13 @@
     
 }
 
+
+//
+//  This function triggers a Notification with an Error.
+//  @error: The error that will be sent to the Notification Object. May be nil.
+//
 -(void) triggerNotification:(NSError *)error {
-    NSLog(@"Sending Notification");
+    NSLog(@"Sending Notification"); //  DEBUG
     UserNotification *testNotification = [[UserNotification alloc]initWithURL:_screenshotURL andError:error];
     [testNotification sendNotification];
 
