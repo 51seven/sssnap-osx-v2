@@ -11,7 +11,7 @@
 //      2. An internal error accured, should better not be happening.
 //  To be continued!
 //
-//  Documentation Status: Version 0.1
+//  Documentation Status: Version 0.2
 //  Documentation last changed: 20/10/14
 //
 //  Created by Christian Poplawski on 17/10/14.
