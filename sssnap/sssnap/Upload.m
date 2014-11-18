@@ -91,6 +91,18 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
     [uploadRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
     
+    //  Check if auth is working
+    //  Should be checked somewhat earlier, too
+    if(![_auth canAuthorize]) {
+        // Error occured, handle it
+        // TODO: Implement
+        // Not yet implemented beacoaus I need  to Sign In and Out for this for testing
+        // I'm Lazy
+        NSError *authError = [NSError errorWithDomain:@"de.51seven.sssnap" code:401 userInfo:nil];
+        [self triggerNotification:authError];
+        return;
+
+    }
     
     //  Google OAuth Access Token is added to the request
     //  by this function.
@@ -103,42 +115,55 @@
                  
                  
                  NSURLResponse *response = nil;
-                 //NSError *HTTPError = [NSError errorWithDomain:@"ARGH" code:200 userInfo:nil];
                  NSError *HTTPError = nil;
                  NSData *data = [NSURLConnection sendSynchronousRequest:uploadRequest returningResponse:&response error:&HTTPError];
                  
                  // Log possible errors
                  // TODO: Do something that makes sense when an error occurs.
-                 if(HTTPError) {
-                     NSLog(@"Following Error occured during the HTTP-Request: ");
-                     NSLog(@"%@", HTTPError);
+                 if(HTTPError != nil) {
+                     
+                     NSLog(@"Following Error occured during the HTTP-Request: ");   // DEBUG
+                     NSLog(@"%@", HTTPError);   // DEBUG
+                     _screenshotURL = nil;
+                     // For now, builds a custom error.
+                     // Error Codes are Documented in the wiki.
+                     // https://github.com/51seven/sssnap-osx-v2/wiki/Error-Handling-in-the-app-and-error-codes
+                     NSError *abstractedError = [NSError errorWithDomain:@"de.51seven.sssnap" code:404 userInfo:nil];
+                     [self triggerNotification:abstractedError];
+                 } else {
+                     
+                     // Write returns to string
+                     NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+                     NSLog(@"%@", str); // DEBUG
+                     
+                     NSError *JSONError = nil;
+                     NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &JSONError];
+                     
+                     // Log possible errors
+                     // TODO: Do something that makes sense when an error occurs.
+                     if(JSONError != nil) {
+                         NSLog(@"Following Error occured during JSON-Parsing: ");   // DEBUG
+                         NSLog(@"%@", JSONError); //  DEBUG
+                         _screenshotURL = nil;
+                         // For now, builds a custom error.
+                         // Error Codes are Documented in the wiki.
+                         // https://github.com/51seven/sssnap-osx-v2/wiki/Error-Handling-in-the-app-and-error-codes
+                         NSError *abstractedError = [NSError errorWithDomain:@"de.51seven.sssnap" code:301 userInfo:nil];
+                         [self triggerNotification:abstractedError];
+                         
+                     } else {
+                         // Save URL of screenshot to object's variables
+                         _screenshotURL = [requestReturns valueForKey:@"shortlink"];
+                         
+                         NSLog(@"%@", requestReturns);  // DEBUG
+                         NSLog(@"%@", _screenshotURL);  // DEBUG
+                         
+                         // copy the URL to Clipboard
+                         [self copyURLToClipboard];
+                     }
                  }
-                 
-                 // Write returns to string
-                 NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-                 NSLog(@"%@", str); // DEBUG
-                 
-                 NSError *JSONError = nil;
-                 NSArray *requestReturns = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &JSONError];
-                 
-                 // Log possible errors
-                 // TODO: Do something that makes sense when an error occurs.
-                 if(JSONError) {
-                     NSLog(@"Following Error occured during JSON-Parsing: ");
-                     NSLog(@"%@", JSONError);
-                 }
-                 
-                 // Save URL of screenshot to object's variables
-                 _screenshotURL = [requestReturns valueForKey:@"shortlink"];
-                 
-                 NSLog(@"%@", requestReturns);  // DEBUG
-                 NSLog(@"%@", _screenshotURL);  // DEBUG
-                 
-                 // copy the URL to Clipboard
-                 [self copyURLToClipboard];
-                 
              }
-         }];
+        }];
     
     return;
 }
@@ -150,24 +175,32 @@
 //  there is no need to give any variables to this function.
 //
 -(void) copyURLToClipboard {
-    //  Get the general pasteboard
-    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-    //  Clear the contents of the clipboard
-    [pasteboard clearContents];
-    NSArray *urlToCopy = [NSArray arrayWithObject:_screenshotURL];
-    BOOL successfullyCopied = [pasteboard writeObjects:urlToCopy];
     
-    if(successfullyCopied) {
-        NSLog(@"Sucesfully Copied"); // DEBUG
-        //  Successfully copied, no error to send
-        NSError *notificationTestError = nil;
-        [self triggerNotification:notificationTestError];
+    //  'nil' cannot be copied to clipboard (and should not be)
+    if(_screenshotURL != nil){
+        //  Get the general pasteboard
+        NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+        //  Clear the contents of the clipboard
+        [pasteboard clearContents];
+        NSArray *urlToCopy = [NSArray arrayWithObject:_screenshotURL];
+        BOOL successfullyCopied = [pasteboard writeObjects:urlToCopy];
+    
+        if(successfullyCopied) {
+            NSLog(@"Sucesfully Copied"); // DEBUG
+            //  Successfully copied, no error to send
+            NSError *notificationTestError = nil;
+            [self triggerNotification:notificationTestError];
+        } else {
+            //  Error during copying, send error
+            //  Note: The _screenshotURL could still be right, this solely gives
+            //  Information about the copy-task.
+            NSError *clipboardCopyError = [NSError errorWithDomain:@"de.51seven.sssnap" code:050 userInfo:nil];
+            [self triggerNotification:clipboardCopyError];
+        }
     } else {
-        //  Error during copying, send error
-        //  Note: The _screenshotURL could still be right, this solely gives
-        //  Information about the copy-task.
-        NSError *notificationTestError = [NSError errorWithDomain:@"Link not copied to clipboard properly" code:100 userInfo:nil];
-        [self triggerNotification:notificationTestError];
+        //  Screenshot was nil
+        NSError *screenshotNilError = [NSError errorWithDomain:@"de.51seven.sssnap" code:300 userInfo:nil];
+        [self triggerNotification:screenshotNilError];
     }
     
     

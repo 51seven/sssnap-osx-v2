@@ -42,9 +42,9 @@
 //
 -(void) sendNotification {
     if(_uploadError != nil) {
-        //  There was an Error, delegate the Error to sendErrorNotification
+        //  There was an Error, delegate the Error to errorDelegate
         //  for further actions.
-        [self sendErrorNotification:_uploadError];
+        [self errorDelegate:_uploadError];
     } else {
         //  No error, sned the default Notification
         [self sendSuccessfulNotification];
@@ -70,12 +70,51 @@
 }
 
 
+-(void) errorDelegate: (NSError *) error {
+    NSNumber *errorCode = [NSNumber numberWithInteger:[_uploadError code]];
+    NSString *minorTitle = @"We had some trouble here";
+    NSString *criticalTitle = @"Oops, something went terribly wrong";
+    
+    if([errorCode integerValue] < 100) {
+        NSString *clipboardErrorText = @"Link is not in your clipboard. Don't worry, just click here to see your Screenshot.";
+        [self sendErrorNotification:minorTitle and:clipboardErrorText];
+    } else if ([errorCode integerValue] == 301){
+        // TODO: Check the internet connection and Server availability
+        NSString *authenticationErrorText = @"There was an error parsing the response from the server";
+        [self sendErrorNotification:criticalTitle and:authenticationErrorText];
+    } else if ([errorCode integerValue] == 300) {
+        // TODO: Check the internet connection and Server availability
+        NSString *uploadErrorText = @"Something went wrong during the Upload";
+        [self sendErrorNotification:criticalTitle and:uploadErrorText];
+    } else if ([errorCode integerValue] == 404) {
+        // TODO: Check the internet connection and Server availability
+        NSString *uploadErrorText = @"Something went wrong during the Upload";
+        [self sendErrorNotification:criticalTitle and:uploadErrorText];
+    } else if([errorCode integerValue] == 401) {
+        NSString *authErrorText = @"Something went wrong with your authentication";
+        [self sendErrorNotification:criticalTitle and:authErrorText];
+    }
+    
+}
+
 //
-//  Handles the different types of Errors
+//  Triggers a notification with custom error title and text
+//
+-(void) sendErrorNotification: (NSString *) title and: (NSString *) informativeText {
+    NSUserNotification *sucessNotification = [[NSUserNotification alloc] init];
+    sucessNotification.title = title;
+    sucessNotification.informativeText = informativeText;
+    sucessNotification.soundName = NSUserNotificationDefaultSoundName;
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:sucessNotification];
+
+}
+
+//
 //  TODO: Implement
 //
--(void) sendErrorNotification: (NSError *) error {
-    //  TODO: Catch errors.
+-(void) clickableErrorNotification: (NSString *) title and: (NSString *) informativeText {
+    
 }
 
 @end
