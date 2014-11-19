@@ -61,9 +61,11 @@
     // set Content-Type in HTTP header
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", BoundaryConstant];
     NSString *accept = [NSString stringWithFormat:@"application/json"];
+    NSString *provider = [NSString stringWithFormat:@"google"];
     
     [uploadRequest setValue:accept forHTTPHeaderField:@"Accept"];
     [uploadRequest setValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [uploadRequest setValue:provider forHTTPHeaderField:@"x-auth-provider"];
     
     // Initialize post body
     NSMutableData *body = [NSMutableData data];
