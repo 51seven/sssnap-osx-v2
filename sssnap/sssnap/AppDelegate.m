@@ -19,6 +19,7 @@
 
 @synthesize auth;
 
+#pragma mark - Initialization
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -33,11 +34,18 @@
     self.statusBar.highlightMode = YES;
     
     
-    
     [self setGoogleOAuth];
     NSLog(@"%@", auth);
     
+    //  Register for NotificationCenters
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(screenshotUploadSucceded:) name:@"kScreenshotUploadSucceededNotification" object:nil];
+    [[NSUserNotificationCenter defaultUserNotificationCenter]setDelegate:self];
+    
 }
+
+
+
+
 
 
 
@@ -45,6 +53,8 @@
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
+
+#pragma mark - IBAction
 
 - (IBAction)screenshotButtonPush:(id)sender {
     NSLog(@"Button was pushed!");
@@ -124,7 +134,30 @@
     } else {
         return NO;
     }
-
     
+}
+
+#pragma mark - NotificationHandler
+
+-(void) screenshotUploadSucceded: (NSNotification *) notification {
+    
+    //  Reset old screenshotURL
+    _screenshotURL = nil;
+    
+    //  Obtain new screenshotURL
+    if([notification object] != nil) {
+        NSLog(@"URL Description: %@", [notification object]);
+        NSLog(@"This is the extracted screenshotURL: %@", _screenshotURL);
+        _screenshotURL = [notification object];
+    }
+}
+
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center
+       didActivateNotification:(NSUserNotification *)notification {
+    NSLog(@"Hi, you clicked the Notification");
+    NSLog(@"The matiching URL is %@", _screenshotURL);
+
+    //  Open URl in default browser
+    [[NSWorkspace sharedWorkspace] openURL:_screenshotURL];
 }
 @end

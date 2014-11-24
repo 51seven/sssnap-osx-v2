@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 
-@interface UserNotification : NSObject
+@interface UserNotification : NSObject <NSUserNotificationCenterDelegate>
 
 -(instancetype) init __attribute__((unavailable("Use initWithScreenshot instead")));
 

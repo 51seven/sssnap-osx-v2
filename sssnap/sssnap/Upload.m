@@ -155,10 +155,16 @@
                          
                      } else {
                          // Save URL of screenshot to object's variables
-                         _screenshotURL = [requestReturns valueForKey:@"shortlink"];
+                         _screenshotURL = [NSURL URLWithString:[requestReturns valueForKey:@"shortlink"]];
                          
                          NSLog(@"%@", requestReturns);  // DEBUG
                          NSLog(@"%@", _screenshotURL);  // DEBUG
+                         
+                         
+                         // NotificationCenter Test
+                         [[NSNotificationCenter defaultCenter]
+                          postNotificationName:@"kScreenshotUploadSucceededNotification" object:_screenshotURL];
+                         
                          
                          // copy the URL to Clipboard
                          [self copyURLToClipboard];

@@ -44,7 +44,7 @@
     if(_uploadError != nil) {
         //  There was an Error, delegate the Error to errorDelegate
         //  for further actions.
-        [self errorDelegate:_uploadError];
+        [self delegateError:_uploadError];
     } else {
         //  No error, sned the default Notification
         [self sendSuccessfulNotification];
@@ -70,7 +70,7 @@
 }
 
 
--(void) errorDelegate: (NSError *) error {
+-(void) delegateError: (NSError *) error {
     NSNumber *errorCode = [NSNumber numberWithInteger:[_uploadError code]];
     NSString *minorTitle = @"We had some trouble here";
     NSString *criticalTitle = @"Oops, something went terribly wrong";
@@ -106,7 +106,12 @@
     sucessNotification.informativeText = informativeText;
     sucessNotification.soundName = NSUserNotificationDefaultSoundName;
     
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:sucessNotification];
+    NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+    [center deliverNotification:sucessNotification];
+
+    
+    
+    //[[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:sucessNotification];
 
 }
 
@@ -116,5 +121,6 @@
 -(void) clickableErrorNotification: (NSString *) title and: (NSString *) informativeText {
     
 }
+
 
 @end

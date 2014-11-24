@@ -15,7 +15,7 @@
 #import "ServerAuth.h"
 
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
 
 - (IBAction)screenshotButtonPush:(id)sender;
 - (IBAction)quitApp:(id)sender;
@@ -32,6 +32,10 @@
 
 //  Auth object to Authenticate with Google
 @property (strong) GTMOAuth2Authentication *auth;
+
+//  Screenshot URL
+@property (strong) NSURL *screenshotURL;
+
 
 @end
 

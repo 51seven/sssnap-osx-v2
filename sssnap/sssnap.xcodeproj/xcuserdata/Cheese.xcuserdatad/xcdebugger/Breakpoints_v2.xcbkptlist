@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "sssnap/Upload.m"
-            timestampString = "438084979.188141"
+            timestampString = "438529163.376792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "-copyURLToClipboard"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "sssnap/UserNotification.m"
-            timestampString = "438000926.839111"
+            timestampString = "438089967.303599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "-errorDelegate:"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "-sendSuccessfulNotification"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
