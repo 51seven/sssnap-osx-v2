@@ -70,7 +70,7 @@ id refToSelf;
 
 OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, void *userData) {
     
-    [refToSelf screenshotButtonPush:refToSelf];
+    [refToSelf startScreenshotProcess];
     return noErr;
 }
 
@@ -89,6 +89,30 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 
 - (IBAction)screenshotButtonPush:(id)sender {
     NSLog(@"Button was pushed!");
+    [self startScreenshotProcess];
+}
+
+
+//
+//  Quit the App
+//
+- (IBAction)quitApp:(id)sender {
+    [NSApp terminate:self];
+}
+
+
+//
+//  Open the Window Controller for the Settings Window
+//
+- (IBAction)settingsButtonPush:(id)sender {
+    _settingsWindow = [[SettingsView alloc]init];
+    [_settingsWindow showWindow:self];
+}
+
+#pragma mark - Functionality
+
+
+-(void) startScreenshotProcess {
     //  Create a new Screenshot Object
     //  On inintiation a screenshot is taken
     Screenshot *testScreenshot = [[Screenshot alloc]init];
@@ -112,23 +136,7 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
             return;
         }
     }
-}
 
-
-//
-//  Quit the App
-//
-- (IBAction)quitApp:(id)sender {
-    [NSApp terminate:self];
-}
-
-
-//
-//  Open the Window Controller for the Settings Window
-//
-- (IBAction)settingsButtonPush:(id)sender {
-    _settingsWindow = [[SettingsView alloc]init];
-    [_settingsWindow showWindow:self];
 }
 
 //
