@@ -45,9 +45,6 @@ id refToSelf;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(screenshotUploadSucceded:) name:@"kScreenshotUploadSucceededNotification" object:nil];
     [[NSUserNotificationCenter defaultUserNotificationCenter]setDelegate:self];
     
-    
-    
-    
     //  Register Hotkeys
     EventHandlerRef gMyHotkeyRef;
     EventHotKeyID gMyHotkeyID;
@@ -56,6 +53,7 @@ id refToSelf;
     eventType.eventClass = kEventClassKeyboard;
     eventType.eventKind = kEventHotKeyPressed;
     
+    //  Save reference to self so MyHotkeyHandler can refer to it
     refToSelf = self;
     
     InstallApplicationEventHandler(&MyHotkeyHandler, 1, &eventType, nil, nil);
@@ -68,6 +66,11 @@ id refToSelf;
     
 }
 
+
+//
+//  Hotkey Handler, simply starts the screenshot process on
+//  Hotkey activation.
+//
 OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, void *userData) {
     
     [refToSelf startScreenshotProcess];
@@ -75,15 +78,11 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 }
 
 
-
-
-
-
-
-
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
+
+
 
 #pragma mark - IBAction
 
@@ -111,7 +110,11 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 
 #pragma mark - Functionality
 
-
+//
+//  Starts the Screenshot process.
+//  During the process, a Screenshot is taken, it is uploaded
+//  and a Notification is triggered.
+//
 -(void) startScreenshotProcess {
     //  Create a new Screenshot Object
     //  On inintiation a screenshot is taken
