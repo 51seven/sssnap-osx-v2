@@ -13,11 +13,15 @@
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
+
 @end
 
 @implementation AppDelegate
 
 @synthesize auth;
+
+static NSString *hotkeys = @"shift alt 4";
+id refToSelf;
 
 #pragma mark - Initialization
 
@@ -41,6 +45,33 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(screenshotUploadSucceded:) name:@"kScreenshotUploadSucceededNotification" object:nil];
     [[NSUserNotificationCenter defaultUserNotificationCenter]setDelegate:self];
     
+    
+    
+    
+    //  Register Hotkeys
+    EventHandlerRef gMyHotkeyRef;
+    EventHotKeyID gMyHotkeyID;
+    EventTypeSpec eventType;
+    
+    eventType.eventClass = kEventClassKeyboard;
+    eventType.eventKind = kEventHotKeyPressed;
+    
+    refToSelf = self;
+    
+    InstallApplicationEventHandler(&MyHotkeyHandler, 1, &eventType, nil, nil);
+    
+    gMyHotkeyID.signature = 'htk1';
+    gMyHotkeyID.id = 1;
+    
+    RegisterEventHotKey(0x15, shiftKey+optionKey, gMyHotkeyID,
+                        GetApplicationEventTarget(), 0, &gMyHotkeyRef);
+    
+}
+
+OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, void *userData) {
+    
+    [refToSelf screenshotButtonPush:refToSelf];
+    return noErr;
 }
 
 
@@ -160,4 +191,6 @@
     //  Open URl in default browser
     [[NSWorkspace sharedWorkspace] openURL:_screenshotURL];
 }
+
+
 @end

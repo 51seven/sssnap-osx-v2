@@ -13,6 +13,7 @@
 #import "GoogleOAuth.h"
 #import "GTMOAuth2Authentication.h"
 #import "ServerAuth.h"
+#import <Carbon/Carbon.h>
 
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
@@ -22,6 +23,8 @@
 - (IBAction)settingsButtonPush:(id)sender;
 
 - (BOOL) userIsSignedIn;
+
+
 
 //  Settings Window
 @property (strong) SettingsView *settingsWindow;
