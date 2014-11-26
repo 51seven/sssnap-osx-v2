@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D92CFDFC1A1A1BCA007B5AFD /* UserNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D92CFDFB1A1A1BCA007B5AFD /* UserNotification.m */; };
+		D92CFDFE1A25D917007B5AFD /* sssnap.iconset in Resources */ = {isa = PBXBuildFile; fileRef = D92CFDFD1A25D917007B5AFD /* sssnap.iconset */; };
 		D93779B619F68B5E0044BCF3 /* Upload.m in Sources */ = {isa = PBXBuildFile; fileRef = D93779B519F68B5E0044BCF3 /* Upload.m */; };
 		D938F2BE1A07B7BD00256CA1 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2BC1A07B7BD00256CA1 /* SettingsView.m */; };
 		D938F2BF1A07B7BD00256CA1 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D938F2BD1A07B7BD00256CA1 /* SettingsView.xib */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		D92CFDF81A1A1B7E007B5AFD /* UserNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotification.h; sourceTree = "<group>"; };
 		D92CFDFB1A1A1BCA007B5AFD /* UserNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNotification.m; sourceTree = "<group>"; };
+		D92CFDFD1A25D917007B5AFD /* sssnap.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = sssnap.iconset; sourceTree = "<group>"; };
 		D93779B419F68B5E0044BCF3 /* Upload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Upload.h; sourceTree = "<group>"; };
 		D93779B519F68B5E0044BCF3 /* Upload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Upload.m; sourceTree = "<group>"; };
 		D938F2BB1A07B7BD00256CA1 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		D9FD49AF19F1A03E008DA510 = {
 			isa = PBXGroup;
 			children = (
+				D92CFDFD1A25D917007B5AFD /* sssnap.iconset */,
 				D938F2E21A07C01500256CA1 /* WebKit.framework */,
 				D9FD49BA19F1A03E008DA510 /* sssnap */,
 				D9FD49CE19F1A03E008DA510 /* sssnapTests */,
@@ -308,6 +311,7 @@
 				D9FD49C319F1A03E008DA510 /* Images.xcassets in Resources */,
 				D9FD49C619F1A03E008DA510 /* MainMenu.xib in Resources */,
 				D938F2D41A07BB9D00256CA1 /* GTMOAuth2Window.xib in Resources */,
+				D92CFDFE1A25D917007B5AFD /* sssnap.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
