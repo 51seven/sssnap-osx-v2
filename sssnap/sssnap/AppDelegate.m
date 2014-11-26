@@ -13,11 +13,15 @@
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
+
 @end
 
 @implementation AppDelegate
 
 @synthesize auth;
+
+static NSString *hotkeys = @"shift alt 4";
+id refToSelf;
 
 #pragma mark - Initialization
 
@@ -41,23 +45,77 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(screenshotUploadSucceded:) name:@"kScreenshotUploadSucceededNotification" object:nil];
     [[NSUserNotificationCenter defaultUserNotificationCenter]setDelegate:self];
     
+    //  Register Hotkeys
+    EventHandlerRef gMyHotkeyRef;
+    EventHotKeyID gMyHotkeyID;
+    EventTypeSpec eventType;
+    
+    eventType.eventClass = kEventClassKeyboard;
+    eventType.eventKind = kEventHotKeyPressed;
+    
+    //  Save reference to self so MyHotkeyHandler can refer to it
+    refToSelf = self;
+    
+    InstallApplicationEventHandler(&MyHotkeyHandler, 1, &eventType, nil, nil);
+    
+    gMyHotkeyID.signature = 'htk1';
+    gMyHotkeyID.id = 1;
+    
+    RegisterEventHotKey(0x15, shiftKey+optionKey, gMyHotkeyID,
+                        GetApplicationEventTarget(), 0, &gMyHotkeyRef);
+    
 }
 
 
-
-
-
-
+//
+//  Hotkey Handler, simply starts the screenshot process on
+//  Hotkey activation.
+//
+OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, void *userData) {
+    
+    [refToSelf startScreenshotProcess];
+    return noErr;
+}
 
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
 
+
+
 #pragma mark - IBAction
 
 - (IBAction)screenshotButtonPush:(id)sender {
     NSLog(@"Button was pushed!");
+    [self startScreenshotProcess];
+}
+
+
+//
+//  Quit the App
+//
+- (IBAction)quitApp:(id)sender {
+    [NSApp terminate:self];
+}
+
+
+//
+//  Open the Window Controller for the Settings Window
+//
+- (IBAction)settingsButtonPush:(id)sender {
+    _settingsWindow = [[SettingsView alloc]init];
+    [_settingsWindow showWindow:self];
+}
+
+#pragma mark - Functionality
+
+//
+//  Starts the Screenshot process.
+//  During the process, a Screenshot is taken, it is uploaded
+//  and a Notification is triggered.
+//
+-(void) startScreenshotProcess {
     //  Create a new Screenshot Object
     //  On inintiation a screenshot is taken
     Screenshot *testScreenshot = [[Screenshot alloc]init];
@@ -81,23 +139,7 @@
             return;
         }
     }
-}
 
-
-//
-//  Quit the App
-//
-- (IBAction)quitApp:(id)sender {
-    [NSApp terminate:self];
-}
-
-
-//
-//  Open the Window Controller for the Settings Window
-//
-- (IBAction)settingsButtonPush:(id)sender {
-    _settingsWindow = [[SettingsView alloc]init];
-    [_settingsWindow showWindow:self];
 }
 
 //
@@ -160,4 +202,6 @@
     //  Open URl in default browser
     [[NSWorkspace sharedWorkspace] openURL:_screenshotURL];
 }
+
+
 @end
