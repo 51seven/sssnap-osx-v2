@@ -12,7 +12,7 @@
 @interface SettingsView : NSWindowController
 
 
-@property (strong) IBOutlet NSWindow *setingsWindow;
+@property (strong) IBOutlet NSWindow *settingsWindow;
 
 
 - (IBAction)signInGoogleButtonPush:(id)sender;

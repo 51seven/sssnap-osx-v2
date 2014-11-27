@@ -106,6 +106,7 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 - (IBAction)settingsButtonPush:(id)sender {
     _settingsWindow = [[SettingsView alloc]init];
     [_settingsWindow showWindow:self];
+    
 }
 
 #pragma mark - Functionality

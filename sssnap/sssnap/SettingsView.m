@@ -25,12 +25,14 @@
     if(self == nil){
         return nil;
     }
-    
+    [NSApp activateIgnoringOtherApps:YES];
+    [_settingsWindow makeKeyAndOrderFront:self];
     return self;
 }
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
@@ -40,6 +42,6 @@
 //
 - (IBAction)signInGoogleButtonPush:(id)sender {
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
-    [auth displaySignInSheet:_setingsWindow];
+    [auth displaySignInSheet:_settingsWindow];
 }
 @end
