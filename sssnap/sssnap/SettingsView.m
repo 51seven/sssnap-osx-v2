@@ -25,8 +25,11 @@
     if(self == nil){
         return nil;
     }
+    
+    //  Bring Window in front upon activation
     [NSApp activateIgnoringOtherApps:YES];
     [_settingsWindow makeKeyAndOrderFront:self];
+    
     return self;
 }
 
