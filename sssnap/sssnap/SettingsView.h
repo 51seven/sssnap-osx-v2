@@ -16,5 +16,6 @@
 
 
 - (IBAction)signInGoogleButtonPush:(id)sender;
+- (IBAction)logOutGoogleButtonPush:(id)sender;
 
 @end

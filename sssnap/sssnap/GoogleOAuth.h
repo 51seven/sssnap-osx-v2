@@ -20,6 +20,6 @@
 - (void)displaySignInSheet: (NSWindow *)targetWindow;
 - (GTMOAuth2Authentication *) getAuthFromKeychain;
 - (BOOL) credentialsInKeychain;
-
+- (void) removeItemFromKeychain;
 
 @end

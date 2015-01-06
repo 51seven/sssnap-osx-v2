@@ -47,4 +47,13 @@
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
     [auth displaySignInSheet:_settingsWindow];
 }
+
+- (void)logOutGoogleButtonPush:(id)sender
+{
+    GoogleOAuth *auth = [[GoogleOAuth alloc]init];
+    [auth removeItemFromKeychain];
+    
+}
+
+
 @end
