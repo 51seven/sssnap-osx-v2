@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsView">
             <connections>
+                <outlet property="logOutGoogleButton" destination="jek-sf-tSd" id="AEo-C2-EpH"/>
                 <outlet property="setingsWindow" destination="F0z-JX-Cv5" id="91Y-Dm-04G"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
