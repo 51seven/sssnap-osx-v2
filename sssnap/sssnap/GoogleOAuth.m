@@ -14,10 +14,10 @@
 
 @interface GoogleOAuth ()
 
+
 @end
 
 @implementation GoogleOAuth
-
 
 
 -(id) init {
@@ -93,6 +93,12 @@
         return NO;
     }
     
+}
+
+- (void)removeItemFromKeychain
+{
+    [GTMOAuth2WindowController removeAuthFromKeychainForName:kKeychainItemName];
+    [GTMOAuth2WindowController revokeTokenForGoogleAuthentication:[self getAuthFromKeychain]];
 }
 
 

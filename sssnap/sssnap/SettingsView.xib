@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsView">
             <connections>
+                <outlet property="logOutGoogleButton" destination="jek-sf-tSd" id="AEo-C2-EpH"/>
                 <outlet property="setingsWindow" destination="F0z-JX-Cv5" id="91Y-Dm-04G"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -15,7 +16,7 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="691" y="427" width="480" height="275"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="275"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -29,6 +30,16 @@
                                 <action selector="signInGoogleButtonPush:" target="-2" id="Rgg-Fy-xYm"/>
                             </connections>
                         </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7q7-vp-WoL">
+                        <rect key="frame" x="376" y="13" width="90" height="32"/>
+                        <buttonCell key="cell" type="push" title="Log Out" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jek-sf-tSd">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="logOutGoogleButtonPush:" target="-2" id="3Gi-dF-wTP"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
