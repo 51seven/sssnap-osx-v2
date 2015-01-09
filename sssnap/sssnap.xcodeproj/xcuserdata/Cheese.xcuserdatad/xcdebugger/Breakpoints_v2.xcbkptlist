@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "sssnap/UserNotification.m"
-            timestampString = "438089967.303599"
+            timestampString = "442497757.088325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-sendSuccessfulNotification"
             landmarkType = "5">
          </BreakpointContent>

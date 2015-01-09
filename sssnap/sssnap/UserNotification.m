@@ -60,9 +60,13 @@
 //
 -(void) sendSuccessfulNotification {
     
+    NSString *screenshotURLString = [_screenshotURL absoluteString];
+    NSString *notificationTitle = [@"Success - " stringByAppendingString:screenshotURLString];
+    
     NSUserNotification *sucessNotification = [[NSUserNotification alloc] init];
-    sucessNotification.title = @"Upload Successful!";
-    sucessNotification.informativeText = @"A Link has ben copied to your Clipboard.";
+    sucessNotification.title = notificationTitle;
+    sucessNotification.subtitle = @"A Link has ben copied to your Clipboard";
+    sucessNotification.informativeText = @"Or click this notification to open your screenshot";
     sucessNotification.soundName = NSUserNotificationDefaultSoundName;
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:sucessNotification];
