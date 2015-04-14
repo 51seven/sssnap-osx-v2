@@ -15,6 +15,8 @@
 #import "ServerAuth.h"
 #import <Carbon/Carbon.h>
 
+#import "MainMenuController.h"
+
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
 
@@ -38,6 +40,8 @@
 
 //  Screenshot URL
 @property (strong) NSURL *screenshotURL;
+
+@property MainMenuController *popoverController;
 
 
 @end

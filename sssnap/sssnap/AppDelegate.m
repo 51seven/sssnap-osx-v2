@@ -29,6 +29,9 @@ id refToSelf;
 {
     // Insert code here to initialize your application
     
+    self.popoverController = [[MainMenuController alloc]init];
+    
+    /*
     self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     self.statusBar.title = @"G";
     //self.statusBar.image =    set image later
@@ -36,7 +39,7 @@ id refToSelf;
     //  Assign the Menu to the status bar item
     self.statusBar.menu = self.statusMenu;
     self.statusBar.highlightMode = YES;
-    
+    */
     
     [self setGoogleOAuth];
     NSLog(@"%@", auth);
