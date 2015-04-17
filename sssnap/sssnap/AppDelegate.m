@@ -29,7 +29,7 @@ id refToSelf;
 {
     // Insert code here to initialize your application
     
-    self.popoverController = [[MainMenuController alloc]init];
+    self.popoverController = [[MenubarController alloc]init];
     
     /*
     self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -110,6 +110,10 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
     _settingsWindow = [[SettingsView alloc]init];
     [_settingsWindow showWindow:self];
     
+}
+
+-(IBAction)togglePanel:(id)sender {
+    NSLog(@"Toggle Called, yay!");
 }
 
 #pragma mark - Functionality

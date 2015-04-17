@@ -14,6 +14,7 @@
     self = [super initWithFrame:frameRect];
     if(self) {
         _isActive = NO;
+        _action = @selector(togglePanel:);
 
     }
     return self;
@@ -35,7 +36,11 @@
     NSLog(@"Mousedown Event");
     NSLog(@"%@", theEvent);
     
-    [self changeActivityState];
+    // Sends the action to toggle the panel. Target is nil, so sharedApplication
+    // looks for an object that can respond to the message.
+    [NSApp sendAction:self.action to:nil from:self];
+    
+    //[self changeActivityState];
 }
 
 

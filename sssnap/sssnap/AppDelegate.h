@@ -15,7 +15,7 @@
 #import "ServerAuth.h"
 #import <Carbon/Carbon.h>
 
-#import "MainMenuController.h"
+#import "MenubarController.h"
 
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
@@ -23,6 +23,8 @@
 - (IBAction)screenshotButtonPush:(id)sender;
 - (IBAction)quitApp:(id)sender;
 - (IBAction)settingsButtonPush:(id)sender;
+
+- (IBAction)togglePanel:(id)sender;
 
 - (BOOL) userIsSignedIn;
 
@@ -41,7 +43,7 @@
 //  Screenshot URL
 @property (strong) NSURL *screenshotURL;
 
-@property MainMenuController *popoverController;
+@property MenubarController *popoverController;
 
 
 @end

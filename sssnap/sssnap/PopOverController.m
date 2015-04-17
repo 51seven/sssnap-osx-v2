@@ -16,8 +16,13 @@
 {
     self = [super initWithNibName:@"PopOverController" bundle:nil];
     if (self) {
+        /*
         self.popover = [[NSPopover alloc] init];
         self.popover.contentViewController = self;
+         */
+        
+        self.panel = [[NSPanel alloc] init];
+        self.panel.contentViewController = self;
     }
     return self;
 }

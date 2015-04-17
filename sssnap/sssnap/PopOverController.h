@@ -12,6 +12,7 @@
 
 //@property (strong) IBOutlet NSPopover *popover;
 @property NSPopover *popover;
+@property NSPanel *panel;
 
 
 @end

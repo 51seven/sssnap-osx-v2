@@ -11,10 +11,10 @@
 #import "CustomStatusItemView.h"
 #import "PopOverController.h"
 
-@interface MainMenuController : NSObject
+@interface MenubarController : NSObject
 
 @property NSStatusItem *statusItem;
-@property CustomStatusItemView *customView;
+@property CustomStatusItemView *statusItemView;
 @property PopOverController *viewController;
 @property BOOL isActive;
 

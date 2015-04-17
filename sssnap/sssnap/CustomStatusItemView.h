@@ -12,6 +12,7 @@
 @interface CustomStatusItemView : NSView
 
 @property BOOL isActive;
+@property SEL action;
 
 
 -(void) mouseDown:(NSEvent *)theEvent;
