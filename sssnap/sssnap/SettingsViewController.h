@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "GoogleOAuth.h"
 
-@interface SettingsView : NSWindowController
+@interface SettingsViewController : NSWindowController
 
 
 @property (strong) IBOutlet NSWindow *settingsWindow;

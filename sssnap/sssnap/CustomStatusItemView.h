@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PopOverController.h"
+#import "PanelController.h"
 
 @interface CustomStatusItemView : NSView
 

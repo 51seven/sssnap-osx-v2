@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "CustomStatusItemView.h"
-#import "PopOverController.h"
+#import "PanelController.h"
 
 @interface MenubarController : NSObject
 
 @property NSStatusItem *statusItem;
 @property CustomStatusItemView *statusItemView;
-@property PopOverController *viewController;
+@property PanelController *viewController;
 @property BOOL isActive;
 
 @end

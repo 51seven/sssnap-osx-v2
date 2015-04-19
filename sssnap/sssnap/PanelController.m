@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 51seven. All rights reserved.
 //
 
-#import "PopOverController.h"
+#import "PanelController.h"
 
 
 
-@implementation PopOverController
+@implementation PanelController
 
 - (instancetype)init
 {
-    self = [super initWithNibName:@"PopOverController" bundle:nil];
+    self = [super initWithNibName:@"PanelController" bundle:nil];
     if (self) {
         /*
         self.popover = [[NSPopover alloc] init];

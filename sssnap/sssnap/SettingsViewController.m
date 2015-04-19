@@ -12,16 +12,16 @@
 //  Copyright (c) 2014 51seven. All rights reserved.
 //
 
-#import "SettingsView.h"
+#import "SettingsViewController.h"
 
-@interface SettingsView ()
+@interface SettingsViewController ()
 
 @end
 
-@implementation SettingsView
+@implementation SettingsViewController
 
 -(id) init {
-    self = [super initWithWindowNibName:@"SettingsView"];
+    self = [super initWithWindowNibName:@"SettingsViewController"];
     if(self == nil){
         return nil;
     }

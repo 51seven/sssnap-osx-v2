@@ -11,8 +11,8 @@
 		D92CFDFE1A25D917007B5AFD /* sssnap.iconset in Resources */ = {isa = PBXBuildFile; fileRef = D92CFDFD1A25D917007B5AFD /* sssnap.iconset */; };
 		D93779B619F68B5E0044BCF3 /* Upload.m in Sources */ = {isa = PBXBuildFile; fileRef = D93779B519F68B5E0044BCF3 /* Upload.m */; };
 		D938DDDF1A87D4A500FB81F7 /* CustomStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D938DDDE1A87D4A500FB81F7 /* CustomStatusItemView.m */; };
-		D938F2BE1A07B7BD00256CA1 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2BC1A07B7BD00256CA1 /* SettingsView.m */; };
-		D938F2BF1A07B7BD00256CA1 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D938F2BD1A07B7BD00256CA1 /* SettingsView.xib */; };
+		D938F2BE1A07B7BD00256CA1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2BC1A07B7BD00256CA1 /* SettingsViewController.m */; };
+		D938F2BF1A07B7BD00256CA1 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D938F2BD1A07B7BD00256CA1 /* SettingsViewController.xib */; };
 		D938F2C21A07BB1300256CA1 /* GoogleOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2C11A07BB1300256CA1 /* GoogleOAuth.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D938F2D01A07BB9D00256CA1 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2C61A07BB9D00256CA1 /* GTMHTTPFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D938F2D11A07BB9D00256CA1 /* GTMHTTPFetchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2C81A07BB9D00256CA1 /* GTMHTTPFetchHistory.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -23,8 +23,8 @@
 		D938F2E31A07C01500256CA1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D938F2E21A07C01500256CA1 /* WebKit.framework */; };
 		D938F2E61A09138D00256CA1 /* ServerAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2E51A09138D00256CA1 /* ServerAuth.m */; };
 		D96B5B1019F1A4D800291F46 /* Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = D96B5B0F19F1A4D800291F46 /* Screenshot.m */; };
-		D97824481A87E2BE006EE26F /* PopOverController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97824461A87E2BE006EE26F /* PopOverController.m */; };
-		D97824491A87E2BE006EE26F /* PopOverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97824471A87E2BE006EE26F /* PopOverController.xib */; };
+		D97824481A87E2BE006EE26F /* PanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97824461A87E2BE006EE26F /* PanelController.m */; };
+		D97824491A87E2BE006EE26F /* Panel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97824471A87E2BE006EE26F /* Panel.xib */; };
 		D978E49E1A87CF3C0030DD41 /* MenubarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D978E49D1A87CF3C0030DD41 /* MenubarController.m */; };
 		D9FD49BE19F1A03E008DA510 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD49BD19F1A03E008DA510 /* main.m */; };
 		D9FD49C119F1A03E008DA510 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD49C019F1A03E008DA510 /* AppDelegate.m */; };
@@ -51,9 +51,9 @@
 		D93779B519F68B5E0044BCF3 /* Upload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Upload.m; sourceTree = "<group>"; };
 		D938DDDD1A87D4A500FB81F7 /* CustomStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStatusItemView.h; sourceTree = "<group>"; };
 		D938DDDE1A87D4A500FB81F7 /* CustomStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStatusItemView.m; sourceTree = "<group>"; };
-		D938F2BB1A07B7BD00256CA1 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
-		D938F2BC1A07B7BD00256CA1 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
-		D938F2BD1A07B7BD00256CA1 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
+		D938F2BB1A07B7BD00256CA1 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		D938F2BC1A07B7BD00256CA1 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		D938F2BD1A07B7BD00256CA1 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		D938F2C01A07BB1300256CA1 /* GoogleOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleOAuth.h; sourceTree = "<group>"; };
 		D938F2C11A07BB1300256CA1 /* GoogleOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleOAuth.m; sourceTree = "<group>"; };
 		D938F2C51A07BB9D00256CA1 /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcher.h; sourceTree = "<group>"; };
@@ -72,9 +72,9 @@
 		D938F2E51A09138D00256CA1 /* ServerAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAuth.m; sourceTree = "<group>"; };
 		D96B5B0E19F1A4D800291F46 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screenshot.h; sourceTree = "<group>"; };
 		D96B5B0F19F1A4D800291F46 /* Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screenshot.m; sourceTree = "<group>"; };
-		D97824451A87E2BE006EE26F /* PopOverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopOverController.h; sourceTree = "<group>"; };
-		D97824461A87E2BE006EE26F /* PopOverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopOverController.m; sourceTree = "<group>"; };
-		D97824471A87E2BE006EE26F /* PopOverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOverController.xib; sourceTree = "<group>"; };
+		D97824451A87E2BE006EE26F /* PanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelController.h; sourceTree = "<group>"; };
+		D97824461A87E2BE006EE26F /* PanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelController.m; sourceTree = "<group>"; };
+		D97824471A87E2BE006EE26F /* Panel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Panel.xib; sourceTree = "<group>"; };
 		D978E49C1A87CF3C0030DD41 /* MenubarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenubarController.h; sourceTree = "<group>"; };
 		D978E49D1A87CF3C0030DD41 /* MenubarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenubarController.m; sourceTree = "<group>"; };
 		D9FD49B819F1A03E008DA510 /* sssnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sssnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,37 +111,13 @@
 		D938F2B81A07B78C00256CA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D938F2BA1A07B7AB00256CA1 /* Settings */,
-				D938F2B91A07B7A100256CA1 /* Main */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		D938F2B91A07B7A100256CA1 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				D9FD49BF19F1A03E008DA510 /* AppDelegate.h */,
-				D9FD49C019F1A03E008DA510 /* AppDelegate.m */,
-				D9FD49C419F1A03E008DA510 /* MainMenu.xib */,
-				D978E49C1A87CF3C0030DD41 /* MenubarController.h */,
-				D978E49D1A87CF3C0030DD41 /* MenubarController.m */,
 				D938DDDD1A87D4A500FB81F7 /* CustomStatusItemView.h */,
 				D938DDDE1A87D4A500FB81F7 /* CustomStatusItemView.m */,
-				D97824451A87E2BE006EE26F /* PopOverController.h */,
-				D97824461A87E2BE006EE26F /* PopOverController.m */,
-				D97824471A87E2BE006EE26F /* PopOverController.xib */,
+				D9FD49C419F1A03E008DA510 /* MainMenu.xib */,
+				D97824471A87E2BE006EE26F /* Panel.xib */,
+				D938F2BD1A07B7BD00256CA1 /* SettingsViewController.xib */,
 			);
-			name = Main;
-			sourceTree = "<group>";
-		};
-		D938F2BA1A07B7AB00256CA1 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				D938F2BB1A07B7BD00256CA1 /* SettingsView.h */,
-				D938F2BC1A07B7BD00256CA1 /* SettingsView.m */,
-				D938F2BD1A07B7BD00256CA1 /* SettingsView.xib */,
-			);
-			name = Settings;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		D938F2C31A07BB9D00256CA1 /* Additions */ = {
@@ -181,6 +157,33 @@
 			name = Authentication;
 			sourceTree = "<group>";
 		};
+		D98BF15F1AE3C10600621193 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D938F2BB1A07B7BD00256CA1 /* SettingsViewController.h */,
+				D938F2BC1A07B7BD00256CA1 /* SettingsViewController.m */,
+				D978E49C1A87CF3C0030DD41 /* MenubarController.h */,
+				D978E49D1A87CF3C0030DD41 /* MenubarController.m */,
+				D97824451A87E2BE006EE26F /* PanelController.h */,
+				D97824461A87E2BE006EE26F /* PanelController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D98BF1601AE3C15D00621193 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D938F2E71A09139600256CA1 /* Authentication */,
+				D96B5B0E19F1A4D800291F46 /* Screenshot.h */,
+				D96B5B0F19F1A4D800291F46 /* Screenshot.m */,
+				D93779B419F68B5E0044BCF3 /* Upload.h */,
+				D93779B519F68B5E0044BCF3 /* Upload.m */,
+				D92CFDF81A1A1B7E007B5AFD /* UserNotification.h */,
+				D92CFDFB1A1A1BCA007B5AFD /* UserNotification.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		D9FD49AF19F1A03E008DA510 = {
 			isa = PBXGroup;
 			children = (
@@ -204,15 +207,12 @@
 		D9FD49BA19F1A03E008DA510 /* sssnap */ = {
 			isa = PBXGroup;
 			children = (
+				D9FD49BF19F1A03E008DA510 /* AppDelegate.h */,
+				D9FD49C019F1A03E008DA510 /* AppDelegate.m */,
+				D98BF1601AE3C15D00621193 /* Model */,
+				D98BF15F1AE3C10600621193 /* Controller */,
 				D938F2B81A07B78C00256CA1 /* Views */,
 				D9FD49C219F1A03E008DA510 /* Images.xcassets */,
-				D96B5B0E19F1A4D800291F46 /* Screenshot.h */,
-				D96B5B0F19F1A4D800291F46 /* Screenshot.m */,
-				D93779B419F68B5E0044BCF3 /* Upload.h */,
-				D93779B519F68B5E0044BCF3 /* Upload.m */,
-				D92CFDF81A1A1B7E007B5AFD /* UserNotification.h */,
-				D92CFDFB1A1A1BCA007B5AFD /* UserNotification.m */,
-				D938F2E71A09139600256CA1 /* Authentication */,
 				D938F2C31A07BB9D00256CA1 /* Additions */,
 				D9FD49BB19F1A03E008DA510 /* Supporting Files */,
 			);
@@ -325,10 +325,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D938F2BF1A07B7BD00256CA1 /* SettingsView.xib in Resources */,
+				D938F2BF1A07B7BD00256CA1 /* SettingsViewController.xib in Resources */,
 				D9FD49C319F1A03E008DA510 /* Images.xcassets in Resources */,
 				D9FD49C619F1A03E008DA510 /* MainMenu.xib in Resources */,
-				D97824491A87E2BE006EE26F /* PopOverController.xib in Resources */,
+				D97824491A87E2BE006EE26F /* Panel.xib in Resources */,
 				D938F2D41A07BB9D00256CA1 /* GTMOAuth2Window.xib in Resources */,
 				D92CFDFE1A25D917007B5AFD /* sssnap.iconset in Resources */,
 			);
@@ -361,9 +361,9 @@
 				D938F2D31A07BB9D00256CA1 /* GTMOAuth2SignIn.m in Sources */,
 				D938DDDF1A87D4A500FB81F7 /* CustomStatusItemView.m in Sources */,
 				D9FD49BE19F1A03E008DA510 /* main.m in Sources */,
-				D97824481A87E2BE006EE26F /* PopOverController.m in Sources */,
+				D97824481A87E2BE006EE26F /* PanelController.m in Sources */,
 				D938F2D51A07BB9D00256CA1 /* GTMOAuth2WindowController.m in Sources */,
-				D938F2BE1A07B7BD00256CA1 /* SettingsView.m in Sources */,
+				D938F2BE1A07B7BD00256CA1 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

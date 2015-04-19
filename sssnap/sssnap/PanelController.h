@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PopOverController : NSViewController
+@interface PanelController : NSViewController
 
 //@property (strong) IBOutlet NSPopover *popover;
 @property NSPopover *popover;

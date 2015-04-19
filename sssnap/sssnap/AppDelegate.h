@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "SettingsView.h"
+#import "SettingsViewController.h"
 #import "Screenshot.h"
 #import "Upload.h"
 #import "GoogleOAuth.h"
@@ -31,7 +31,7 @@
 
 
 //  Settings Window
-@property (strong) SettingsView *settingsWindow;
+@property (strong) SettingsViewController *settingsWindow;
 
 //  Status Bar
 @property (strong, nonatomic) NSStatusItem *statusBar;
