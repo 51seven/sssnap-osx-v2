@@ -7,16 +7,19 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PanelController"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="4lM-Xc-ZrW" customClass="NSPanel">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="11P-dg-DxN" customClass="NSPanel">
             <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="112" width="276" height="378"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <view key="contentView" id="Pkg-lx-3lc">
-                <rect key="frame" x="0.0" y="0.0" width="276" height="378"/>
+            <view key="contentView" id="oVl-5D-mGO">
+                <rect key="frame" x="7" y="11" width="276" height="378"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <connections>
+                    <binding destination="-2" name="hidden" keyPath="self.panel" id="4cW-0G-42A"/>
+                </connections>
             </view>
-            <point key="canvasLocation" x="331" y="329"/>
+            <point key="canvasLocation" x="392" y="335"/>
         </window>
     </objects>
 </document>

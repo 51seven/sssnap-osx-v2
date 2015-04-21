@@ -45,6 +45,8 @@
 
 @property MenubarController *popoverController;
 
+@property IBOutlet NSPanel *panel;
+
 
 @end
 

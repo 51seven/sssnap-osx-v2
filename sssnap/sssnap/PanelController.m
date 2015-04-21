@@ -14,7 +14,7 @@
 
 - (instancetype)init
 {
-    self = [super initWithNibName:@"PanelController" bundle:nil];
+    self = [super initWithNibName:@"PopOverController" bundle:nil];
     if (self) {
         /*
         self.popover = [[NSPopover alloc] init];

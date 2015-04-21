@@ -113,6 +113,7 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 }
 
 -(IBAction)togglePanel:(id)sender {
+    
     NSLog(@"Toggle Called, yay!");
 }
 
