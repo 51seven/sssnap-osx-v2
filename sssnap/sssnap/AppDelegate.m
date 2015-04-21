@@ -18,8 +18,8 @@
 
 @implementation AppDelegate
 
-@synthesize auth;
-
+static NSString * const kStatusbarIconName = @"StatusBarIcon";
+static NSString * const kNegStatusbarIconName = @"StatusBarIcon_negative";
 static NSString *hotkeys = @"shift alt 4";
 id refToSelf;
 
@@ -30,8 +30,8 @@ id refToSelf;
 
     // Initialize statusItem
     self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    self.statusBar.image = [NSImage imageNamed:@"StatusBarIcon"];
-    self.statusBar.alternateImage = [NSImage imageNamed:@"StatusBarIcon_negative"];
+    self.statusBar.image = [NSImage imageNamed:kStatusbarIconName];
+    self.statusBar.alternateImage = [NSImage imageNamed:kNegStatusbarIconName];
 
     //  Assign the Menu to the status bar item
     self.statusBar.menu = self.statusMenu;
@@ -39,7 +39,7 @@ id refToSelf;
     
     
     [self setGoogleOAuth];
-    NSLog(@"%@", auth);
+    NSLog(@"%@", self.auth);
     
     //  Register for NotificationCenters
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(screenshotUploadSucceded:) name:@"kScreenshotUploadSucceededNotification" object:nil];
@@ -126,7 +126,7 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
         //  Upload Image, send Notification, send Link to Clipboard
         
         //NSOperationQueue Test
-        Upload *uploadScreenshot = [[Upload alloc]initWithScreenshot:[testScreenshot screenshotImage] andAuth: auth];
+        Upload *uploadScreenshot = [[Upload alloc]initWithScreenshot:[testScreenshot screenshotImage] andAuth: self.auth];
         [uploadScreenshot uploadScreenshot];
         
         
@@ -157,7 +157,7 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
     GTMOAuth2Authentication *authFromKeychain = [keychainCredentials getAuthFromKeychain];
     
     if([authFromKeychain canAuthorize]) {
-        auth = authFromKeychain;
+        self.auth = authFromKeychain;
     } else {
         //  Auth not valid, User needs to Sign in
         NSLog(@"Cannot auth. (Origin: Appdelegate.m)");
