@@ -10,8 +10,8 @@
 		D92CFDFC1A1A1BCA007B5AFD /* UserNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D92CFDFB1A1A1BCA007B5AFD /* UserNotification.m */; };
 		D92CFDFE1A25D917007B5AFD /* sssnap.iconset in Resources */ = {isa = PBXBuildFile; fileRef = D92CFDFD1A25D917007B5AFD /* sssnap.iconset */; };
 		D93779B619F68B5E0044BCF3 /* Upload.m in Sources */ = {isa = PBXBuildFile; fileRef = D93779B519F68B5E0044BCF3 /* Upload.m */; };
-		D938F2BE1A07B7BD00256CA1 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2BC1A07B7BD00256CA1 /* SettingsView.m */; };
-		D938F2BF1A07B7BD00256CA1 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D938F2BD1A07B7BD00256CA1 /* SettingsView.xib */; };
+		D938F2BE1A07B7BD00256CA1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2BC1A07B7BD00256CA1 /* SettingsViewController.m */; };
+		D938F2BF1A07B7BD00256CA1 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D938F2BD1A07B7BD00256CA1 /* SettingsViewController.xib */; };
 		D938F2C21A07BB1300256CA1 /* GoogleOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2C11A07BB1300256CA1 /* GoogleOAuth.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D938F2D01A07BB9D00256CA1 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2C61A07BB9D00256CA1 /* GTMHTTPFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D938F2D11A07BB9D00256CA1 /* GTMHTTPFetchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2C81A07BB9D00256CA1 /* GTMHTTPFetchHistory.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -45,9 +45,9 @@
 		D92CFDFD1A25D917007B5AFD /* sssnap.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = sssnap.iconset; sourceTree = "<group>"; };
 		D93779B419F68B5E0044BCF3 /* Upload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Upload.h; sourceTree = "<group>"; };
 		D93779B519F68B5E0044BCF3 /* Upload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Upload.m; sourceTree = "<group>"; };
-		D938F2BB1A07B7BD00256CA1 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
-		D938F2BC1A07B7BD00256CA1 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
-		D938F2BD1A07B7BD00256CA1 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
+		D938F2BB1A07B7BD00256CA1 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		D938F2BC1A07B7BD00256CA1 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		D938F2BD1A07B7BD00256CA1 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		D938F2C01A07BB1300256CA1 /* GoogleOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleOAuth.h; sourceTree = "<group>"; };
 		D938F2C11A07BB1300256CA1 /* GoogleOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleOAuth.m; sourceTree = "<group>"; };
 		D938F2C51A07BB9D00256CA1 /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcher.h; sourceTree = "<group>"; };
@@ -109,8 +109,6 @@
 		D938F2B91A07B7A100256CA1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				D9FD49BF19F1A03E008DA510 /* AppDelegate.h */,
-				D9FD49C019F1A03E008DA510 /* AppDelegate.m */,
 				D9FD49C419F1A03E008DA510 /* MainMenu.xib */,
 			);
 			name = Main;
@@ -119,9 +117,9 @@
 		D938F2BA1A07B7AB00256CA1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D938F2BB1A07B7BD00256CA1 /* SettingsView.h */,
-				D938F2BC1A07B7BD00256CA1 /* SettingsView.m */,
-				D938F2BD1A07B7BD00256CA1 /* SettingsView.xib */,
+				D938F2BB1A07B7BD00256CA1 /* SettingsViewController.h */,
+				D938F2BC1A07B7BD00256CA1 /* SettingsViewController.m */,
+				D938F2BD1A07B7BD00256CA1 /* SettingsViewController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -186,6 +184,8 @@
 		D9FD49BA19F1A03E008DA510 /* sssnap */ = {
 			isa = PBXGroup;
 			children = (
+				D9FD49BF19F1A03E008DA510 /* AppDelegate.h */,
+				D9FD49C019F1A03E008DA510 /* AppDelegate.m */,
 				D938F2B81A07B78C00256CA1 /* Views */,
 				D9FD49C219F1A03E008DA510 /* Images.xcassets */,
 				D96B5B0E19F1A4D800291F46 /* Screenshot.h */,
@@ -307,7 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D938F2BF1A07B7BD00256CA1 /* SettingsView.xib in Resources */,
+				D938F2BF1A07B7BD00256CA1 /* SettingsViewController.xib in Resources */,
 				D9FD49C319F1A03E008DA510 /* Images.xcassets in Resources */,
 				D9FD49C619F1A03E008DA510 /* MainMenu.xib in Resources */,
 				D938F2D41A07BB9D00256CA1 /* GTMOAuth2Window.xib in Resources */,
@@ -341,7 +341,7 @@
 				D938F2D31A07BB9D00256CA1 /* GTMOAuth2SignIn.m in Sources */,
 				D9FD49BE19F1A03E008DA510 /* main.m in Sources */,
 				D938F2D51A07BB9D00256CA1 /* GTMOAuth2WindowController.m in Sources */,
-				D938F2BE1A07B7BD00256CA1 /* SettingsView.m in Sources */,
+				D938F2BE1A07B7BD00256CA1 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

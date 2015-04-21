@@ -27,12 +27,12 @@ id refToSelf;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
-    
+
+    // Initialize statusItem
     self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    self.statusBar.title = @"G";
-    //self.statusBar.image =    set image later
-    
+    self.statusBar.image = [NSImage imageNamed:@"StatusBarIcon"];
+    self.statusBar.alternateImage = [NSImage imageNamed:@"StatusBarIcon_negative"];
+
     //  Assign the Menu to the status bar item
     self.statusBar.menu = self.statusMenu;
     self.statusBar.highlightMode = YES;
@@ -104,7 +104,7 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 //  Open the Window Controller for the Settings Window
 //
 - (IBAction)settingsButtonPush:(id)sender {
-    _settingsWindow = [[SettingsView alloc]init];
+    _settingsWindow = [[SettingsViewController alloc]init];
     [_settingsWindow showWindow:self];
     
 }
@@ -185,23 +185,23 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 -(void) screenshotUploadSucceded: (NSNotification *) notification {
     
     //  Reset old screenshotURL
-    _screenshotURL = nil;
+    self.screenshotURL = nil;
     
     //  Obtain new screenshotURL
     if([notification object] != nil) {
         NSLog(@"URL Description: %@", [notification object]);
-        NSLog(@"This is the extracted screenshotURL: %@", _screenshotURL);
-        _screenshotURL = [notification object];
+        NSLog(@"This is the extracted screenshotURL: %@", self.screenshotURL);
+        self.screenshotURL = [notification object];
     }
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center
        didActivateNotification:(NSUserNotification *)notification {
     NSLog(@"Hi, you clicked the Notification");
-    NSLog(@"The matiching URL is %@", _screenshotURL);
+    NSLog(@"The matiching URL is %@", self.screenshotURL);
 
     //  Open URl in default browser
-    [[NSWorkspace sharedWorkspace] openURL:_screenshotURL];
+    [[NSWorkspace sharedWorkspace] openURL:self.screenshotURL];
 }
 
 
