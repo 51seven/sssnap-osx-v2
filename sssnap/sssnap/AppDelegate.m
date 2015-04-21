@@ -37,7 +37,7 @@ id refToSelf;
     self.statusBar.menu = self.statusMenu;
     self.statusBar.highlightMode = YES;
     
-    
+    // TODO: Needed here?
     [self setGoogleOAuth];
     NSLog(@"%@", self.auth);
     
@@ -45,7 +45,10 @@ id refToSelf;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(screenshotUploadSucceded:) name:@"kScreenshotUploadSucceededNotification" object:nil];
     [[NSUserNotificationCenter defaultUserNotificationCenter]setDelegate:self];
     
-    //  Register Hotkeys
+    /********************
+     * Register Hotkeys *
+     ********************/
+    // TODO: Own function?
     EventHandlerRef gMyHotkeyRef;
     EventHotKeyID gMyHotkeyID;
     EventTypeSpec eventType;
@@ -61,6 +64,7 @@ id refToSelf;
     gMyHotkeyID.signature = 'htk1';
     gMyHotkeyID.id = 1;
     
+    // TODO: Fix this mysterious error
     RegisterEventHotKey(0x15, shiftKey+optionKey, gMyHotkeyID,
                         GetApplicationEventTarget(), 0, &gMyHotkeyRef);
     

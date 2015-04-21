@@ -7,7 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsViewController">
             <connections>
                 <outlet property="logOutGoogleButton" destination="jek-sf-tSd" id="AEo-C2-EpH"/>
-                <outlet property="setingsWindow" destination="F0z-JX-Cv5" id="91Y-Dm-04G"/>
+                <outlet property="settingsWindow" destination="F0z-JX-Cv5" id="xd6-4O-hU6"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -16,7 +16,7 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="691" y="427" width="480" height="275"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="275"/>
                 <autoresizingMask key="autoresizingMask"/>
