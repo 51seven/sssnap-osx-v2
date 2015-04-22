@@ -19,19 +19,22 @@
 
 @implementation GoogleOAuth
 
+static NSString * const kClientIDKey = @"ClientID";
+static NSString * const kClientSecretKey = @"ClientSecret";
 
 -(id) init {
     if(self = [super init]){
         
-        //Scopes to be used
+        
+        // Scopes to be used
         NSString *plusMeScope = @"https://www.googleapis.com/auth/plus.me";
         NSString *userinfoEmailScope = @"https://www.googleapis.com/auth/userinfo.email";
         
-        //  Ceredentials
+        // Set credentials
         scope = [GTMOAuth2Authentication scopeWithStrings:plusMeScope, userinfoEmailScope, nil];
-        kMyClientID = @"947766948-22hqf8ngu94rmepn5m0ucp5a6mo4jsak.apps.googleusercontent.com";
-        kMyClientSecret = @"_2PD85cvQck4dQGAl4Bvqnbc";
-        kKeychainItemName = @"sssnap: Google plus";
+        MyClientID = [self credentialsForKey:kClientIDKey];
+        MyClientSecret = [self credentialsForKey:kClientSecretKey];
+        KeychainItemName = @"sssnap: Google plus";
     }
     
     return self;
@@ -41,9 +44,9 @@
     
     GTMOAuth2WindowController *windowController;
     windowController = [[[GTMOAuth2WindowController alloc] initWithScope:scope
-                                                                clientID:kMyClientID
-                                                            clientSecret:kMyClientSecret
-                                                        keychainItemName:kKeychainItemName
+                                                                clientID:MyClientID
+                                                            clientSecret:MyClientSecret
+                                                        keychainItemName:KeychainItemName
                                                           resourceBundle:nil] autorelease];
     
     [windowController signInSheetModalForWindow:targetWindow
@@ -54,9 +57,9 @@
 
 - (GTMOAuth2Authentication *) getAuthFromKeychain {
     GTMOAuth2Authentication *auth;
-    auth = [GTMOAuth2WindowController authForGoogleFromKeychainForName:kKeychainItemName
-                                                                 clientID:kMyClientID
-                                                             clientSecret:kMyClientSecret];
+    auth = [GTMOAuth2WindowController authForGoogleFromKeychainForName:KeychainItemName
+                                                                 clientID:MyClientID
+                                                             clientSecret:MyClientSecret];
     
     // Retain the authentication object, which holds the auth tokens
     //
@@ -97,9 +100,78 @@
 
 - (void)removeItemFromKeychain
 {
-    [GTMOAuth2WindowController removeAuthFromKeychainForName:kKeychainItemName];
+    [GTMOAuth2WindowController removeAuthFromKeychainForName:KeychainItemName];
     [GTMOAuth2WindowController revokeTokenForGoogleAuthentication:[self getAuthFromKeychain]];
+}
+
+#pragma mark - G+ Credentials
+
+/**
+ *  Returns the Google+ App-Credentials for a given key.
+ *
+ *  @param theKey the key for which the value is desired 
+ *
+ *  @return The Value for the desired key
+ *
+ *  @note theKey can only be 'ClientID' or 'ClientSecret'
+ *
+ */
+-(NSString *) credentialsForKey: (NSString *) theKey {
+    
+    NSString *credentials;
+    NSDictionary *credentialsDict = [self appCredentials];
+    
+    if (credentialsDict) {
+        credentials = [credentialsDict valueForKey:theKey];
+    } else {
+        NSLog(@"Credentials.plist doesn't seem to exist.");
+        credentials = nil;
+    }
+    
+    return credentials;
+}
+
+
+/**
+ *  Returns a dictionary with the Google+ App-Credentials like ClientID and ClientSecret
+ *  from a .plist file.
+ *
+ *  @return An NSDictionary with the credentials
+ *
+ *  @note The .plist file containing the credentials will not be pushed to git and can only be accessed
+ *        from the built app. Sorry, brah.
+ *
+ */
+-(NSDictionary *) appCredentials {
+    
+    NSDictionary *credentialsDict;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Credentials" ofType:@"plist"];
+    
+    if(!path) {
+        NSLog(@"Credentials.plist was not found.");
+        credentialsDict = nil;
+    } else {
+         credentialsDict = [NSDictionary dictionaryWithContentsOfFile:path];
+    }
+    
+    // Debug
+    NSLog(@"%@", path);
+    
+    return credentialsDict;
 }
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+

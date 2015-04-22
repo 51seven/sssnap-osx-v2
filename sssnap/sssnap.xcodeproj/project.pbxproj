@@ -21,6 +21,7 @@
 		D938F2D51A07BB9D00256CA1 /* GTMOAuth2WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2CF1A07BB9D00256CA1 /* GTMOAuth2WindowController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D938F2E31A07C01500256CA1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D938F2E21A07C01500256CA1 /* WebKit.framework */; };
 		D938F2E61A09138D00256CA1 /* ServerAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = D938F2E51A09138D00256CA1 /* ServerAuth.m */; };
+		D945FF731AE7E83F00413B3F /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = D945FF6F1AE7DEC000413B3F /* Credentials.plist */; };
 		D96B5B1019F1A4D800291F46 /* Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = D96B5B0F19F1A4D800291F46 /* Screenshot.m */; };
 		D9FD49BE19F1A03E008DA510 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD49BD19F1A03E008DA510 /* main.m */; };
 		D9FD49C119F1A03E008DA510 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD49C019F1A03E008DA510 /* AppDelegate.m */; };
@@ -64,6 +65,7 @@
 		D938F2E21A07C01500256CA1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D938F2E41A09138D00256CA1 /* ServerAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAuth.h; sourceTree = "<group>"; };
 		D938F2E51A09138D00256CA1 /* ServerAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAuth.m; sourceTree = "<group>"; };
+		D945FF6F1AE7DEC000413B3F /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		D96B5B0E19F1A4D800291F46 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screenshot.h; sourceTree = "<group>"; };
 		D96B5B0F19F1A4D800291F46 /* Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screenshot.m; sourceTree = "<group>"; };
 		D9FD49B819F1A03E008DA510 /* sssnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sssnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +206,7 @@
 		D9FD49BB19F1A03E008DA510 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D945FF6F1AE7DEC000413B3F /* Credentials.plist */,
 				D9FD49BC19F1A03E008DA510 /* Info.plist */,
 				D9FD49BD19F1A03E008DA510 /* main.m */,
 			);
@@ -307,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D945FF731AE7E83F00413B3F /* Credentials.plist in Resources */,
 				D938F2BF1A07B7BD00256CA1 /* SettingsViewController.xib in Resources */,
 				D9FD49C319F1A03E008DA510 /* Images.xcassets in Resources */,
 				D9FD49C619F1A03E008DA510 /* MainMenu.xib in Resources */,

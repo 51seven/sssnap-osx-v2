@@ -33,7 +33,7 @@ id refToSelf;
     self.statusBar.image = [NSImage imageNamed:kStatusbarIconName];
     self.statusBar.alternateImage = [NSImage imageNamed:kNegStatusbarIconName];
 
-    //  Assign the Menu to the status bar item
+    // Assign the Menu to the status bar item
     self.statusBar.menu = self.statusMenu;
     self.statusBar.highlightMode = YES;
     

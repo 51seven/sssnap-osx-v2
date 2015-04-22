@@ -12,9 +12,9 @@
 
 @interface GoogleOAuth : NSWindowController{
     NSString *scope;
-    NSString *kMyClientID;
-    NSString *kMyClientSecret;
-    NSString *kKeychainItemName;
+    NSString *MyClientID;
+    NSString *MyClientSecret;
+    NSString *KeychainItemName;
 }
 
 - (void)displaySignInSheet: (NSWindow *)targetWindow;
