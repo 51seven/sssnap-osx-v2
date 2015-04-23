@@ -25,6 +25,19 @@ _Release-Date: 17.11.2014_
 * You can Log In via Google, no need to register on yet another web service
 
 ##<a name="milestones">Milestones</a>
+
+### Milestone 2
+This is the Pre-Alpha release Milestone. It rather is some fixing than an
+ actual new Version. (started 04/23/2015)  
+More information can be found [in the wiki](https://github.com/51seven/sssnap-osx-v2/wiki/Pre-Alpha-Release-Roadmap)
+
+- [ ] Upload Progress in StatusaBar
+- [ ] Fix StatusBar Icon
+- [ ] Possibility to update the client
+- [ ] Size of settings window should increase with G+ overlay
+- [x] Remove secrets from Repository
+- [ ] Tidy Up Repository
+
 ### ✓ Milestone 1
 **Finished 17/11/14**  
 ~~1st Milestone (started 10/17/2014)~~ 
