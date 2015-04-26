@@ -40,6 +40,60 @@
     return self;
 }
 
+
+
+
+-(void) afUploadScreenshot {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    
+    
+    // the boundary string: a random string, that will not repeat in post data, to separate post data fields.
+    NSString *BoundaryConstant = @"V2ymHFg03ehbqgZCaKO6jy";
+    // set Content-Type in HTTP header
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", BoundaryConstant];
+    NSString *accept = [NSString stringWithFormat:@"application/json"];
+    NSString *provider = [NSString stringWithFormat:@"google"];
+
+    NSDictionary *parameters;
+    [parameters setValue:accept forKey:@"Accept"];
+    [parameters setValue:contentType forKey:@"Content-Type"];
+    [parameters setValue:provider forKey:@"x-auth-provider"];
+    
+    // Initialize post body
+    NSMutableData *body = [NSMutableData data];
+    
+    //  Prepare Image Data
+    NSData *screenshotData = [_screenshotImage TIFFRepresentation];
+    NSBitmapImageRep *screenshotDataRep = [NSBitmapImageRep imageRepWithData: screenshotData];
+    screenshotData = [screenshotDataRep representationUsingType:NSPNGFileType properties: nil];
+    
+    //  Append image data to post body
+    if (screenshotData) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", BoundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"image.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:screenshotData];
+        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", BoundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    
+    [manager POST:@"https://localhost:3000/api/upload" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:screenshotData name:@"file" fileName:@"image.png" mimeType:@"image/jpeg"];
+    }
+    success:^(NSURLSessionDataTask *task, id responseObject) {
+           NSLog(@"Success %@", responseObject);
+    }
+    failure:^(NSURLSessionDataTask *task, NSError *error) {
+           NSLog(@"Failure %@, %@", error, [task.response description]);
+    }];
+    
+    
+}
+
 //
 //  Uploads a screenshot via POST request to the server and recieves a URL as an answer.
 //  The URL leads to where the screenshot is stored on the server.

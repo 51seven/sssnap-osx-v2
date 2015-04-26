@@ -11,6 +11,8 @@
 #import "GTMOAuth2Authentication.h"
 #import "GoogleOAuth.h"
 #import "UserNotification.h"
+#import <AFNetworking.h>
+#import <AFOAuth2Manager.h>
 
 @interface Upload : NSObject
 
