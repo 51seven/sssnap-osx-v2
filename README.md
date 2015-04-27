@@ -31,7 +31,7 @@ This is the Pre-Alpha release Milestone. It rather is some fixing than an
  actual new Version. (started 04/23/2015)  
 More information can be found [in the wiki](https://github.com/51seven/sssnap-osx-v2/wiki/Pre-Alpha-Release-Roadmap)
 
-- [ ] Upload Progress in StatusaBar
+- [x] Upload ~~Progress~~ indicator  in StatusaBar
 - [ ] Fix StatusBar Icon
 - [ ] Possibility to update the client
 - [ ] Size of settings window should increase with G+ overlay
