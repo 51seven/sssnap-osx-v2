@@ -43,6 +43,7 @@ id refToSelf;
     
     //  Register for NotificationCenters
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(screenshotUploadSucceded:) name:@"kScreenshotUploadSucceededNotification" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeIconForUpload:) name:@"uploadStatusChangeNotification" object:nil];
     [[NSUserNotificationCenter defaultUserNotificationCenter]setDelegate:self];
     
     /********************
@@ -67,6 +68,10 @@ id refToSelf;
     // TODO: Fix this mysterious error
     RegisterEventHotKey(0x15, shiftKey+optionKey, gMyHotkeyID,
                         GetApplicationEventTarget(), 0, &gMyHotkeyRef);
+    
+    self.uploadInProgress = NO;
+    
+    
     
 }
 
@@ -184,6 +189,21 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
     
 }
 
+-(void) changeIconForUpload: (NSNotification *) notification {
+    NSLog(@"changeIconForUpload called");
+    NSLog(@"uploadInProgress is %hhd", self.uploadInProgress);
+    if(!self.uploadInProgress) {
+        self.uploadInProgress = YES;
+        self.statusBar.image = [NSImage imageNamed:@"StatusBarIcon_upload"];
+        NSLog(@"Changing Icon to UploadInProgress");
+        
+    } else {
+        self.uploadInProgress = NO;
+        self.statusBar.image = [NSImage imageNamed:@"StatusBarIcon"];
+        NSLog(@"Changing Icon back to normal");
+    }
+}
+
 #pragma mark - NotificationHandler
 
 -(void) screenshotUploadSucceded: (NSNotification *) notification {
@@ -194,8 +214,8 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
     //  Obtain new screenshotURL
     if([notification object] != nil) {
         NSLog(@"URL Description: %@", [notification object]);
-        NSLog(@"This is the extracted screenshotURL: %@", self.screenshotURL);
         self.screenshotURL = [notification object];
+        NSLog(@"This is the extracted screenshotURL: %@", self.screenshotURL);
     }
 }
 

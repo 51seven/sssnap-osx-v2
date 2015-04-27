@@ -22,6 +22,8 @@
 - (IBAction)quitApp:(id)sender;
 - (IBAction)settingsButtonPush:(id)sender;
 
+
+
 - (BOOL) userIsSignedIn;
 
 
@@ -39,6 +41,7 @@
 //  Screenshot URL
 @property (strong) NSURL *screenshotURL;
 
+@property BOOL uploadInProgress;
 
 @end
 
