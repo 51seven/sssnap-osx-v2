@@ -36,7 +36,7 @@ More information can be found [in the wiki](https://github.com/51seven/sssnap-os
 - [ ] Possibility to update the client
 - [ ] Size of settings window should increase with G+ overlay
 - [x] Remove secrets from Repository
-- [ ] Tidy Up Repository
+- [x] Tidy Up Repository
 
 ### ✓ Milestone 1
 **Finished 17/11/14**  
