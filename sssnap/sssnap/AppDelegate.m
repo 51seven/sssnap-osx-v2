@@ -27,29 +27,64 @@ id refToSelf;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // Set up the statusbar
+    [self setUpStatusBar];
+    
+    // TODO: Rewrite with return type?
+    [self setGoogleOAuth];
+    
+    // Register for notifications
+    [self registerForNotifications];
+    
+    //  register global Hotkeys
+    [self registerHotkeys];
+    
+    self.uploadInProgress = NO;
+}
 
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
+    // Insert code here to tear down your application
+}
+
+
+
+#pragma mark - Helper methods
+
+/**
+ *  Helper method to declutter applicationDidFinishLaunching.
+ *  Sets up the StatusBar icon.
+ */
+- (void) setUpStatusBar {
+    
     // Initialize statusItem
     self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     self.statusBar.image = [NSImage imageNamed:kStatusbarIconName];
     self.statusBar.alternateImage = [NSImage imageNamed:kNegStatusbarIconName];
-
+    
     // Assign the Menu to the status bar item
     self.statusBar.menu = self.statusMenu;
     self.statusBar.highlightMode = YES;
-    
-    // TODO: Needed here?
-    [self setGoogleOAuth];
-    NSLog(@"%@", self.auth);
-    
-    //  Register for NotificationCenters
+}
+
+
+/**
+ *  Helper method to declutter applicationDidFinishLaunching.
+ *  Registers for the needed Notifications.
+ */
+- (void) registerForNotifications {
+
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(screenshotUploadSucceded:) name:@"kScreenshotUploadSucceededNotification" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeIconForUpload:) name:@"uploadStatusChangeNotification" object:nil];
     [[NSUserNotificationCenter defaultUserNotificationCenter]setDelegate:self];
+}
+
+
+/**
+ *  Helper method to declutter applicationDidFinishLaunching.
+ *  Registers the global Hotkeys.
+ */
+- (void) registerHotkeys {
     
-    /********************
-     * Register Hotkeys *
-     ********************/
-    // TODO: Own function?
     EventHandlerRef gMyHotkeyRef;
     EventHotKeyID gMyHotkeyID;
     EventTypeSpec eventType;
@@ -68,11 +103,7 @@ id refToSelf;
     // TODO: Fix this mysterious error
     RegisterEventHotKey(0x15, shiftKey+optionKey, gMyHotkeyID,
                         GetApplicationEventTarget(), 0, &gMyHotkeyRef);
-    
-    self.uploadInProgress = NO;
-    
-    
-    
+
 }
 
 
@@ -87,9 +118,6 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
 }
 
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
-}
 
 
 
@@ -169,7 +197,10 @@ OSStatus MyHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, voi
         self.auth = authFromKeychain;
     } else {
         //  Auth not valid, User needs to Sign in
-        NSLog(@"Cannot auth. (Origin: Appdelegate.m)");
+        //  TODO: Display SingnIn Window
+        NSLog(@"Cannot auth. [Appdelegat.m setGoogleAuth]");
+        //[self.screenshotButton setEnabled:NO];
+        
     }
     
 }

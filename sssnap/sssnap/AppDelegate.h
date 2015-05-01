@@ -22,10 +22,11 @@
 - (IBAction)settingsButtonPush:(id)sender;
 
 
-
 - (BOOL) userIsSignedIn;
 
 
+
+@property (weak) IBOutlet NSMenuItem *screenshotButton;
 
 //  Settings Window
 @property (strong) SettingsViewController *settingsWindow;
