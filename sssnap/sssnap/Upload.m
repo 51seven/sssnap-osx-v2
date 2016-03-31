@@ -33,7 +33,7 @@
     if(self = [super init]) {
         _screenshotImage = screenshot;
         //  TODO: Write a function to easily switch between dev and live enviroment
-        _serverURL = [NSURL URLWithString:@"https://localhost:3000/api/upload"];
+        _serverURL = [NSURL URLWithString:@"https://localhost:3000/1/upload"];
         _auth = auth;
     }
     return self;

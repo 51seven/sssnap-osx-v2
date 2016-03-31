@@ -14,6 +14,7 @@
 
 @property (strong) IBOutlet NSWindow *settingsWindow;
 @property (weak) IBOutlet NSButtonCell *logOutGoogleButton;
+@property (weak) IBOutlet NSButton *googleSignInButton;
 
 
 - (IBAction)signInGoogleButtonPush:(id)sender;

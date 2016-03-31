@@ -16,9 +16,11 @@
 
 @interface SettingsViewController ()
 
+
 @end
 
 @implementation SettingsViewController
+
 
 -(id) init {
     self = [super initWithWindowNibName:@"SettingsViewController"];
@@ -36,13 +38,12 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    
-    
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
+    // Hide Button if user credentials are present in keychain
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
     if([auth credentialsInKeychain]) {
-        // Disable Button
+        [self.googleSignInButton setHidden:YES];
     }
 
 }
