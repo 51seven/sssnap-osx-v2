@@ -58,6 +58,10 @@
 - (IBAction)googleSignInButtonPush:(id)sender {
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
     [auth displaySignInSheet:_settingsWindow];
+    
+    // Display and hide Buttons accordingly
+    [_googleLogOutButton setEnabled:YES];
+    [_googleSignInButton setHidden:YES];
 }
 
 
@@ -69,6 +73,9 @@
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
     [auth removeItemFromKeychain];
     
+    // Display and hide Buttons accordingly
+    [_googleSignInButton setHidden:NO];
+    [_googleLogOutButton setEnabled:NO];
 }
 
 
