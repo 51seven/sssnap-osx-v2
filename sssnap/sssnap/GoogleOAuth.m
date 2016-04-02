@@ -19,19 +19,20 @@
 
 @implementation GoogleOAuth
 
+// Keys
 static NSString * const kClientIDKey = @"ClientID";
 static NSString * const kClientSecretKey = @"ClientSecret";
+
+// Scopes
+static NSString * const kPlusMeScope = @"https://www.googleapis.com/auth/plus.me";
+static NSString * const kUserinfoEmailScope = @"https://www.googleapis.com/auth/userinfo.email";
+
 
 -(id) init {
     if(self = [super init]){
         
-        
-        // Scopes to be used
-        NSString *plusMeScope = @"https://www.googleapis.com/auth/plus.me";
-        NSString *userinfoEmailScope = @"https://www.googleapis.com/auth/userinfo.email";
-        
         // Set credentials
-        scope = [GTMOAuth2Authentication scopeWithStrings:plusMeScope, userinfoEmailScope, nil];
+        scope = [GTMOAuth2Authentication scopeWithStrings:kPlusMeScope, kUserinfoEmailScope, nil];
         MyClientID = [self credentialsForKey:kClientIDKey];
         MyClientSecret = [self credentialsForKey:kClientSecretKey];
         KeychainItemName = @"sssnap: Google plus";
@@ -39,6 +40,7 @@ static NSString * const kClientSecretKey = @"ClientSecret";
     
     return self;
 }
+
 
 -(void)displaySignInSheet:(NSWindow *)targetWindow {
     

@@ -17,7 +17,7 @@
 @property (weak) IBOutlet NSButton *googleSignInButton;
 
 
-- (IBAction)signInGoogleButtonPush:(id)sender;
+- (IBAction)googleSignInButtonPush:(id)sender;
 - (IBAction)logOutGoogleButtonPush:(id)sender;
 
 @end

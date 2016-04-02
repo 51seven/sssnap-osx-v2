@@ -6,7 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsViewController">
             <connections>
-                <outlet property="GoogleSignInButton" destination="kaO-mz-xqY" id="ox5-gI-jqW"/>
+                <outlet property="googleSignInButton" destination="QvE-2x-rQJ" id="zeu-JM-DCP"/>
                 <outlet property="logOutGoogleButton" destination="jek-sf-tSd" id="AEo-C2-EpH"/>
                 <outlet property="settingsWindow" destination="F0z-JX-Cv5" id="xd6-4O-hU6"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
@@ -17,21 +17,11 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="691" y="427" width="480" height="275"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="275"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaO-mz-xqY">
-                        <rect key="frame" x="117" y="110" width="246" height="54"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Google-sign-in" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="ukK-Ps-5Fo">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <connections>
-                                <binding destination="-2" name="argument" keyPath="self.googleSignInButton" id="AOw-69-DDk"/>
-                            </connections>
-                        </buttonCell>
-                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7q7-vp-WoL">
                         <rect key="frame" x="376" y="13" width="90" height="32"/>
                         <buttonCell key="cell" type="push" title="Log Out" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jek-sf-tSd">
@@ -40,6 +30,16 @@
                         </buttonCell>
                         <connections>
                             <action selector="logOutGoogleButtonPush:" target="-2" id="3Gi-dF-wTP"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QvE-2x-rQJ">
+                        <rect key="frame" x="121" y="113" width="239" height="48"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Google-sign-in" imagePosition="only" alignment="center" inset="2" id="Xyb-mx-geD">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="googleSignInButtonPush:" target="-2" id="pg1-2Q-kO5"/>
                         </connections>
                     </button>
                 </subviews>

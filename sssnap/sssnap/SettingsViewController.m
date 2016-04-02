@@ -32,6 +32,9 @@
     [NSApp activateIgnoringOtherApps:YES];
     [_settingsWindow makeKeyAndOrderFront:self];
     
+    [_googleSignInButton setEnabled:YES];
+    [_googleSignInButton setAlphaValue:1];
+    
     
     return self;
 }
@@ -43,7 +46,8 @@
     // Hide Button if user credentials are present in keychain
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
     if([auth credentialsInKeychain]) {
-        [self.googleSignInButton setHidden:YES];
+        NSLog(@"Credentials are in Keychain");
+        //[_googleSignInButton setHidden:YES];
     }
 
 }
@@ -51,10 +55,12 @@
 //
 //  Call Google Sign In Sheet on click
 //
-- (IBAction)signInGoogleButtonPush:(id)sender {
+- (IBAction)googleSignInButtonPush:(id)sender {
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
     [auth displaySignInSheet:_settingsWindow];
+    
 }
+
 
 - (void)logOutGoogleButtonPush:(id)sender
 {
