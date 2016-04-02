@@ -31,23 +31,19 @@
     //  Bring Window in front upon activation
     [NSApp activateIgnoringOtherApps:YES];
     [_settingsWindow makeKeyAndOrderFront:self];
-    
-    [_googleSignInButton setEnabled:YES];
-    [_googleSignInButton setAlphaValue:1];
-    
-    
+
     return self;
 }
 
+
 - (void)windowDidLoad {
     [super windowDidLoad];
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
     // Hide Button if user credentials are present in keychain
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
     if([auth credentialsInKeychain]) {
         NSLog(@"Credentials are in Keychain");
-        //[_googleSignInButton setHidden:YES];
+        [_googleSignInButton setHidden:YES];
     }
 
 }
