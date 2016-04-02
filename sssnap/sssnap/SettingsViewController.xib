@@ -6,8 +6,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsViewController">
             <connections>
+                <outlet property="googleLogOutButton" destination="jek-sf-tSd" id="lEp-y9-Dbj"/>
                 <outlet property="googleSignInButton" destination="QvE-2x-rQJ" id="zeu-JM-DCP"/>
-                <outlet property="logOutGoogleButton" destination="jek-sf-tSd" id="AEo-C2-EpH"/>
                 <outlet property="settingsWindow" destination="F0z-JX-Cv5" id="xd6-4O-hU6"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -29,7 +29,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="logOutGoogleButtonPush:" target="-2" id="3Gi-dF-wTP"/>
+                            <action selector="googleLogOutButtonPush:" target="-2" id="D1g-zC-Ljd"/>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QvE-2x-rQJ">

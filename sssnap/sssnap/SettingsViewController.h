@@ -13,11 +13,11 @@
 
 
 @property (strong) IBOutlet NSWindow *settingsWindow;
-@property (weak) IBOutlet NSButtonCell *logOutGoogleButton;
+@property (weak) IBOutlet NSButtonCell *googleLogOutButton;
 @property (weak) IBOutlet NSButton *googleSignInButton;
 
 
 - (IBAction)googleSignInButtonPush:(id)sender;
-- (IBAction)logOutGoogleButtonPush:(id)sender;
+- (IBAction)googleLogOutButtonPush:(id)sender;
 
 @end

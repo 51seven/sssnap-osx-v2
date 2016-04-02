@@ -44,22 +44,28 @@
     if([auth credentialsInKeychain]) {
         NSLog(@"Credentials are in Keychain");
         [_googleSignInButton setHidden:YES];
+    } else {
+        [_googleLogOutButton setEnabled:NO];
     }
 
 }
 
-//
-//  Call Google Sign In Sheet on click
-//
+
+/**
+ *  Listener for the Google Sign In Button. Display the Sign In sheet
+ *  on top of the window.
+ */
 - (IBAction)googleSignInButtonPush:(id)sender {
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
     [auth displaySignInSheet:_settingsWindow];
-    
 }
 
 
-- (void)logOutGoogleButtonPush:(id)sender
-{
+/**
+ *  Listener for the Logout Button. removes the user credentials 
+ *  from the keychain.
+ */
+- (void)googleLogOutButtonPush:(id)sender {
     GoogleOAuth *auth = [[GoogleOAuth alloc]init];
     [auth removeItemFromKeychain];
     
